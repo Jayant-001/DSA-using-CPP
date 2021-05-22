@@ -1,0 +1,1 @@
+{"name":"Local: rearrangeArrayAlternately","url":"c:\\myFiles\\CP\\DSA\\Arrays\\Practice\\rearrangeArrayAlternately.cpp","tests":[{"id":1621409303450,"input":"11\n10 20 30 40 50 60 70 80 90 100 110","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\myFiles\\CP\\DSA\\Arrays\\Practice\\rearrangeArrayAlternately.cpp","group":"local","local":true}
