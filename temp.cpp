@@ -37,7 +37,7 @@ void addAtBeginning(node* &head, int val) {
     head = add;
 }
 
-// insert at end of the list-------------------------------------------------------------
+// insert at end of the list--------------------------------------------------------------------------------------
 void append(node* &head, int val) {
     node *toAdd = new node(val);
     if (head == NULL) {
@@ -52,7 +52,7 @@ void append(node* &head, int val) {
     cur->next = toAdd;
 }
 
-// insert at given location--------------------------------------------------------------
+// insert at given location-----------------------------------------------------------------------------------------
 void insert(node* &head, int i, int val) {
 
     if(i > length(head)) {
@@ -75,7 +75,7 @@ void insert(node* &head, int i, int val) {
     }
 }
 
-// delete from beginning of the list
+// delete from beginning of the list-----------------------------------------------------------------------------
 void deleteFromBeg(node* &head){
     if(head == NULL) {
         cout << "list is empty" << endl;
@@ -86,7 +86,7 @@ void deleteFromBeg(node* &head){
     free(temp);
 }
 
-// delete from end of the list
+// delete from end of the list-----------------------------------------------------------------------------------
 void deleteFromEnd(node* &head) {
     if (head == NULL) {
         cout << "List is empty" << endl;
@@ -102,7 +102,7 @@ void deleteFromEnd(node* &head) {
     free(cur->next);
 }
 
-// traverse whole list and print list's data-----------------------------------------------
+// traverse whole list and print list's data----------------------------------------------------------------------
 void print(node *head) {
     node *t = head;
 
