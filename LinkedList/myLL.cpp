@@ -139,6 +139,7 @@ void reverse(node* &head) {
     node *prevNode = NULL;
     node *curNode = head;
     node *nextNode = head;
+    
     while(nextNode) {
         nextNode = nextNode->next;
         curNode->next = prevNode;
