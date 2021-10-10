@@ -2,7 +2,7 @@
 using namespace std;
 
 struct node{
-    public:
+    public: 
     int data;
     node *next;
 

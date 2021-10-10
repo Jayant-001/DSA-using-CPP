@@ -28,7 +28,7 @@ int main() {
             }
         }
 
-        // swaping elements
+        // Swap elements
         if (min != i) {
             int temp = arr[i];
             arr[i] = arr[min];
@@ -36,7 +36,7 @@ int main() {
         }
     }
 
-    // Printing array
+    // To Print array
     for(int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
