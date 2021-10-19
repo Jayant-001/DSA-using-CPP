@@ -5,13 +5,12 @@ using namespace std;
 // dest = destination rod;
 // helper = auxiliary rod;
 
-
 void toh(int n, char src, char dest, char helper) {
 
     if (n == 0) return;
 
     toh(n-1, src, helper, dest);
-    cout << src << " -> " << dest << endl;
+    cout << "move disk " << n << " from " << src << " -> " << dest << endl;
     toh(n-1, helper, dest, src);
 }
 

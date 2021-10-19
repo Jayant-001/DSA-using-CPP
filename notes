@@ -1,0 +1,18 @@
+Way to identify problem is recursive or not
+1. recursive based DS like tree, graph...
+2. there are choice and decision (here we will use Input-Output method)
+3. problem is recursively difined (here we will use IBH(Induction, Base case, Hypothesis) method)
+
+
+                -----------------------DP-------------------------
+Way to identify DP problem
+1. they will ask for optimal solution
+2. there is always 2 or more choices
+3. recursive function will called for more then 1 times (recursive function call > 1)
+
+Type of Knapsack-
+    1. 0-1 Knapsack (only occurrence of a item)
+    2. Fractional knapsack (we can break item into its fraction)
+    3. Unbounded knapsack (allow multiple occurrences of a item)
+
+Base Case = Think of the smallest valid input
