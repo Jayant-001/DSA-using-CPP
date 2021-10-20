@@ -26,5 +26,5 @@ int main() {
 
     cout << replacePi(s);
 
-return 0;
+    return 0;
 }

@@ -16,5 +16,5 @@ int main() {
     string s = "jayant kumar";
     cout << reverse(s, "");
 
-return 0;
+    return 0;
 }
