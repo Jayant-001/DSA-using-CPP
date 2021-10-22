@@ -17,7 +17,7 @@ int main() {
 
     string str1 = "abc";
     string str2 = "def";
-    
+
     mergeString("abc", "str2");
     return 0;
 }
