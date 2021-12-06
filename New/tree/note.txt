@@ -1,0 +1,76 @@
+root
+children
+parent
+sibling - have same parent 
+leaf - has no child
+A is ancestor of B
+B is descendent of A
+cousin
+
+
+Depth and Height
+Depth of x :-
+	length of path from root to x
+				(or)
+	No. of edges in path from root to x
+
+Height :- No. of edges in longest path from root to a leaf
+
+Height of x :-
+	No. of edges in longest path from x to a leaf
+
+Height of an empty tree = -1
+Height of tree with 1 node = 0
+
+# Max no. of nodes at level i = 2^i
+# Max no. of nodes in a tree with height h = (2^(no.of levels))-1
+# Max no. of nodes of perfect binary tree = log2(n+1)-1
+# Height of complete binary tree = (log2n)
+# min-height = (log2n)
+# max-height = n-1
+
+Height of tree :-
+	height of root node
+
+Binary tree :-
+	A tree in which each node can have at most 2 children
+
+Balanced binary tree :-
+	Differece between height of left and right subtree for every node is not more than k (mostly 1)
+
+Strict/Proper binary tree:-
+	Each node can have either 2 or 0 children
+
+Complete Binary tree:-
+	All levels except possibly the last are completely filled and all nodes are as left as possible
+ 
+
+We cam implement binary tree using :-
+1. Dynamically created nodes -
+	struch Node {
+		int data;
+		Node* left;
+		Node* right;
+	};
+2. Arrays
+	for node at index i 
+		left-child-index = 2i+1
+		right-child-index = 2i+2
+// above formula is only used in a complete binary tree
+
+
+Application of tree
+1. Storing naturally hierarchical data. i.e., file system
+2. Organize data for quick Search, insertion, deletion. i.e., BST
+3. Trie i.e., dictionary
+4. Network Routing algorithm
+
+BST :-
+	A binary tree in which for each node, value of all the nodes in left subtree is lesser or equal and value of all the nodes in right subtree is greater.
+
+
+Application memory has 4 part of memory:-
+	1. Heap
+	2. Stack
+	3. Static/Global
+	4. Code(Text)

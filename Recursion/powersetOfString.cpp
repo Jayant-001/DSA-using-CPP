@@ -1,10 +1,14 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
+vector<string> v;
 
 void powerSet(string str, int i, string cur) {
 
     if(i == str.length()) {
         cout << cur << "\n";
+        v.push_back(cur);
         return;
     }
 
@@ -21,6 +25,7 @@ int main() {
     cin >> str;
 
     powerSet(str, 0, "");
+    cout << endl << " , " << v.size();
     
     return 0;
 }

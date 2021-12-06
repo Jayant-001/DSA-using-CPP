@@ -1,0 +1,28 @@
+1. Nearest greater to left
+2. Nearest greater to right (next largest element)
+3. Nearest smaller to left (nearest smaller element)
+4. Nearest smaller to right
+
+5. Stock span problem
+6. Mazimum area of histogram
+
+7. Map area of rectangle in Binary Matrix
+
+8. Rain water trapping 
+9. Implementing a min stack (with using extra space, without using extra space)
+10. Implemnent stack using heap
+11. The celebrity problem
+12. Longest valid parenthesis
+13. Interative TOH
+
+
+
+Iterative method loop direction
+----------------------->
+	------------------->
+		--------------->
+			----------->
+				------->
+
+using stack loop direction (iterative method)
+<------------------------
