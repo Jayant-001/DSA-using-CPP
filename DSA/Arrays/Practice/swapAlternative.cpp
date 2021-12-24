@@ -16,7 +16,13 @@ int main() {
 	}
 
     for (auto x : umap)
-      cout << x.first << " " << x.second << endl;
+    {
+    	for(auto y : x) {
+
+    	if(x.second == x.second && x != y)
+    		cout << false;
+    	}
+    }
 
 	return 0;
 }
