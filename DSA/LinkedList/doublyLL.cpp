@@ -174,7 +174,6 @@ void print(Node *head) {
 }
 
 
-
 int main() {
 
     Node *head = NULL;
@@ -185,8 +184,6 @@ int main() {
     add(head, tail, 5);
     push(head, tail, 101);
     add(head, tail, 20);
-
-
 
     cout << "lenght: " << length(head) << endl;;
     print(head);

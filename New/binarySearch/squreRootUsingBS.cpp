@@ -41,7 +41,6 @@ double squarePrecision(int n, int precision, int baseSoln) {
 }
 
 
-
 int main() {
 
 	int n;
