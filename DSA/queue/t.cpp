@@ -3,34 +3,33 @@ using namespace std;
 
 int main()
 {
-    string s1 = "bbbaaaba";
-    string s2 = "aaabbbba";
 
-    vector<int> v1(125, 0);
-    vector<int> v2(125, 0);
+    int t;
+    cin >> t;
+    while(t--) {
+        
+        int n;
+        cin >> n;
+        int arr[n];
+        for(int i = 0; i < n; i++) 
+            cin >> arr[i];
 
-    for(int i = 0; i < s1.size(); i++) {
-        int t = (int)s1[i];
-        v1[t]++;
-    }
+        int ct = 0;
+        
+        for(int i = 0; i < n; i++) {
 
-    for(int i = 0; i < s2.size(); i++) {
-        int t = (int)s2[i];
-        v2[t]++;
-    }
+            for(int j = i+1; j < n; j++) {
 
-    sort(v1.begin(), v1.end());
-    sort(v2.begin(), v2.end());
-
-    for(int i = 90; i < v1.size(); i++) {
-        if(v1[i] != v2[i]) {
-            cout << "no" << endl;
-            break;
+                if((arr[j] - arr[i]) == (j-i)) 
+                    ct++;   
+            }
         }
+
+        cout << ct << endl;
     }
 
-
-    cout << "yes";
+    string s;
+    s.length();
 
     return 0;
 }

@@ -7,7 +7,6 @@ void permutation(string str, string res) {
         cout << res << endl;
         return;
     }
-
     for(int i = 0; i < str.length(); i++) {
         char t = str[i];
         string ros = str.substr(0, i) + str.substr(i+1);
