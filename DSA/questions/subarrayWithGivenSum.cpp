@@ -5,7 +5,6 @@ using namespace std;
 //Function to find a continuous sub-array which adds up to a given number.
     vector<int> subarraySum(int arr[], int n, int s)
     {
-        
         vector<int> v;
         
         int cSum = arr[0];
