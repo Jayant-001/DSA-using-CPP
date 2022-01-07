@@ -20,7 +20,7 @@ int main() {
     vector<int> arr(n);
     for(int i = 0; i < n; i++) 
         cin >> arr[i];
-    
+
     int maxProfit = 0;
     for(int i = 1; i < n; i++) {
         int pr1 = getProfit(arr, 0, i);

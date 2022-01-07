@@ -24,12 +24,12 @@ int main() {
     vector<int> v = {1,2,3,4,5};
     
     vector<int> res;
-    // permutation(v, res);
+    permutation(v, res);
 
-    v.erase(v.begin()+2);
+    // v.erase(v.begin()+2);
 
-    for(auto i : v)
-        cout << i << " ";
+    // for(auto i : v)
+    //     cout << i << " ";
 
     return 0;
 }
