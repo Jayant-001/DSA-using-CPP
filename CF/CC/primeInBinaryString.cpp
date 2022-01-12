@@ -56,16 +56,25 @@ string findSubstringBinary(string s, vector<string> ans) {
 
 int main() {
 
-    string s;
-    cin >> s;
+    int t;
+    cin >> t;
 
-    int n = stoi(s, nullptr, 2);
+    while(t--) {
+            
+        string s;
+        cin >> s;
 
-    vector<string> ans;
-    primeInRange(0, n, ans);
-    cout << findSubstringBinary(s, ans);
+        int n = stoi(s, nullptr, 2);
+        n = 1000;
 
-    
+        vector<string> ans;
+        primeInRange(0, n, ans);
+        // cout << findSubstringBinary(s, ans) << endl;
+        for(int i = 0; i < ans.size(); i++)
+            cout << ans[i] << endl;
+    }
+
+
     // for(int i = 0; i < ans.size(); i++) {
     //     if(s.find(ans[i]) != string::npos) {
     //         cout << ans[i] << "-" << "found" << endl;

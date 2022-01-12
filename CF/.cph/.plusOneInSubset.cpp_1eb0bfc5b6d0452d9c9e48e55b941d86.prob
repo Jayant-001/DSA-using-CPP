@@ -1,0 +1,1 @@
+{"name":"Local: plusOneInSubset","url":"d:\\CP\\CF\\plusOneInSubset.cpp","tests":[{"id":1641826929179,"input":"3\n6\n3 4 2 4 1 2\n3\n1000 1002 998\n2\n12 11","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\plusOneInSubset.cpp","group":"local","local":true}

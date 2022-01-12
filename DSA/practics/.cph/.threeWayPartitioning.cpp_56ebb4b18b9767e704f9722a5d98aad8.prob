@@ -1,0 +1,1 @@
+{"name":"Local: threeWayPartitioning","url":"d:\\CP\\DSA\\practics\\threeWayPartitioning.cpp","tests":[{"id":1641669896837,"input":"6\n1 4 1 3 2 3 \n2 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\practics\\threeWayPartitioning.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: chocolateDistribution","url":"d:\\CP\\DSA\\practics\\chocolateDistribution.cpp","tests":[{"id":1641667912045,"input":"8 5\n3 4 1 9 56 7 9 12","output":""},{"id":1641668146105,"input":"7 3\n7 3 2 4 9 12 56","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\practics\\chocolateDistribution.cpp","group":"local","local":true}

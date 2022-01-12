@@ -1,6 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool find3Numbers(int arr[], int n, int k) {
+    
+    for(int i = 0; i < n-2; i++) {
+
+        int y = i+1;
+        int z = n-1;
+        while(y<z) {
+            if(k-arr[i] == arr[y]+arr[z]) {
+                return true;
+            }
+            else if(k-arr[i] > arr[y]+arr[z]) {
+                y++;
+            }
+            else
+                z--;
+        }
+    }
+
+    return false;
+}
+
 int main() {
 
     int n, k;
@@ -9,30 +30,9 @@ int main() {
     for(int i = 0; i < n; i++) 
         cin >> arr[i];
 
-    map<int, int> hash;
-    for(int i = 0; i < n; i++) {
-        if(hash.size() < 2) {
-            hash[arr[i]]++;
-        }
-        else {
-            for(auto h: hash) {
-                int second = k-h.first;
-                auto temp = hash;
-                temp[h.first]=0;
-                // for(auto t: temp) {
-                //     if(temp[second] != 0) {
-                //         cout << " yes'";
-                //         exit(0);
-                //         break;
-                //     }
-                // }
-                if(temp[second] != 0)
-                cout << "yes";
-            }
-            hash[arr[i]]++;
-        }
-    }
-    cout << "no";
+    sort(arr, arr+n);
+
+    cout << find3Numbers(arr, n, k);
 
     return 0;
 }
