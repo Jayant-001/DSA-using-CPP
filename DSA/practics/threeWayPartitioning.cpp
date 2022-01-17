@@ -1,3 +1,4 @@
+// https://practice.geeksforgeeks.org/problems/three-way-partitioning/1
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -12,13 +13,21 @@ int main() {
     int a, b;
     cin >> a >> b;
 
-    int idx = 0;
-    for(int i = idx+1; i < n; i++) {
-        if(arr[i] <= a) {
-            int t = arr[i];
-            arr[i] = arr[idx];
-            arr[idx] = t;
-            idx++;
+    int low = 0;
+    int high = n-1;
+
+    int mid = 0;
+    while(mid <= high) {
+        
+        if(arr[mid] < a) {
+            swap(arr[mid++], arr[low++]);
+        }
+        else if(arr[mid] >= a && arr[mid] <= b)
+            mid++;
+        else {
+            swap(arr[mid], arr[high]);
+            high--;
+            
         }
     }
 

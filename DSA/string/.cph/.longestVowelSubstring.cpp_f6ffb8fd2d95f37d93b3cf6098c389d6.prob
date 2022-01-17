@@ -1,0 +1,1 @@
+{"name":"Local: longestVowelSubstring","url":"d:\\CP\\DSA\\string\\longestVowelSubstring.cpp","tests":[{"id":1642165880593,"input":"2\nabacda\nbbaaabcbeea","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\string\\longestVowelSubstring.cpp","group":"local","local":true}
