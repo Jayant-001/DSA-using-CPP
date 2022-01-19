@@ -34,11 +34,9 @@ int main() {
         cin >> arr[i];
     }
 
-    int target = 5;
-    // cin >> target;
+    int target;
+    cin >> target;
     cout << "Index : " << search(arr, target, 0, n-1);
-
-
 
     return 0;
 }
