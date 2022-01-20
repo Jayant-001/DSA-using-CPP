@@ -1,1 +1,1 @@
-{"name":"Local: sieveOfEratosthenes","url":"d:\\CP\\DSA\\math\\sieveOfEratosthenes.cpp","tests":[{"id":1642613902488,"input":"30","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\math\\sieveOfEratosthenes.cpp","group":"local","local":true}
+{"name":"Local: sieveOfEratosthenes","url":"d:\\CP\\DSA\\math\\sieveOfEratosthenes.cpp","tests":[{"id":1642613902488,"input":"50","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\math\\sieveOfEratosthenes.cpp","group":"local","local":true}
