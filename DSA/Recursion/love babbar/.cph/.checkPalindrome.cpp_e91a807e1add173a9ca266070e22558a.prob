@@ -1,0 +1,1 @@
+{"name":"Local: checkPalindrome","url":"d:\\CP\\DSA\\Recursion\\love babbar\\checkPalindrome.cpp","tests":[{"id":1642790737139,"input":"abcddcba","output":""},{"id":1642790913151,"input":"abbccbba","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\Recursion\\love babbar\\checkPalindrome.cpp","group":"local","local":true}
