@@ -1,0 +1,78 @@
+--------------------------------------------------------------------------------UNIT 3-----------------------------------------------------------------------------------
+Instruction = 1 Types of instruction = 2;
+Data Transfer Ins
+        Data Manipulation Ins.Program Control or
+    Transfer Control Ins.
+
+    Single Acc.Organization = 9 Instrution Format = 10
+
+    General CPU Organization = 10;
+    Three address  
+    Two
+    one
+    zero
+    Example for all 13
+
+Find number of bits = 18
+Commom bus system = 22
+Instruction Cycle = 23
+Memory Reference Instruction = 30
+
+Instruction Codes = 33
+Control Unit = 34
+Microoperation = 36
+Micro-operation vs macro-operation = 37
+Hardwired and microprogrammed control unit = 38
+organization of control unit = 41
+Microinstruction format = 42
+Horizonta - Vertical Microprogrammed control unit = 43
+Microprogrammed sequence = 46
+Addressing sequence = 46
+RISC = 50
+CISC = 50
+Pipepining = 51
+General Consideration = 54
+Space time diagram = 54
+Instruction pipeline = 55
+
+Latency, Collision, Forbidden Latencies, Permissible latencies, Reservation Table, Forbidden Latencies = 59
+Collision vector, State Diagram = 60
+Latency Sequence, Latency Cycle, Contant Cycle, Simple Cycle, Greedy Cycle = 61
+
+
+
+
+
+-----------------------------------------------------------------------------------Unit 4 --------------------------------------------------------------------------------
+Computer Memory = 1
+Memory hierarchy = 2
+TYpes of RAM = 5
+RAM Chip = 7
+Cache Memory = 9
+Structure of Cache/Main Memory = 10
+Cache Design Issue = 12
+Mapping Function = 12
+Address mapping or Cache Mapping = 13
+Direct Mpping
+Associative Mapping or FUlly Associative Mapping
+Set Associative Mapping
+
+Write Policies:
+    Write Through
+    Write Back
+    Dirty Bit
+    Virtual Memory
+
+Replacement Algorithm = 25
+Least Recently Used = 28
+Optimal Page Replacement Algorithm = 28
+Optimal Page Replacement = 30
+
+Associative memory = 31
+Auxiliary memory = 32
+Magnetic Disk = 
+Magnetic Tapes = 36
+Optical Disks = 36
+2-D Memory Organization = 37
+2.5D Memory Organization 38
+

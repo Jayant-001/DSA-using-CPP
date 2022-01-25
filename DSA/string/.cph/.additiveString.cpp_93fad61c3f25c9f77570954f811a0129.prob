@@ -1,0 +1,1 @@
+{"name":"Local: additiveString","url":"d:\\CP\\DSA\\string\\additiveString.cpp","tests":[{"id":1642833078524,"input":"3\n1235813\n1711\n199100199","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\string\\additiveString.cpp","group":"local","local":true}
