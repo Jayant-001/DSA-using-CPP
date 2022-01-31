@@ -17,9 +17,9 @@ void permutation(string str, string res) {
 
 int main() {
 
-    // permutation("abc", "");
-    string s = "acbc";
-    cout << s.substr(0+1);
+    permutation("abc", "");
+    // string s = "acbc";
+    // cout << s.substr(0+1);
 
     return 0;
 }
