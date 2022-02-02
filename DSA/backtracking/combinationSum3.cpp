@@ -1,5 +1,9 @@
-// Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
-// You may return the answer in any order.
+// Find all valid combinations of k numbers that sum up to n such that the following conditions are true:
+
+// Only numbers 1 through 9 are used.
+// Each number is used at most once.
+// Return a list of all possible valid combinations. The list must not contain the same combination twice, and the combinations may be returned in any order.
+// leetcode - 216
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -22,38 +26,32 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-void getCombinations(int n, int k, int idx, vi res, vvi &ans) {
+void getCombinations(int idx, int n, int sum, vi res, vvi &ans) {
 	
-	if(res.size() == k) {
+	if(sum < 0 || res.size() > n)
+		return;
+	
+	if(sum == 0 && res.size() == n) {
 		ans.pb(res);
 		return;
 	}
-	if(idx == n+1)
-		return;
 	
-	for(int i = idx; i <= n; i++) {
+	for(int i = idx; i < 10; i++) {
 		res.pb(i);
-		getCombinations(n, k, i+1, res, ans);
+		getCombinations(i+1, n, sum-i, res, ans);
 		res.pop_back();
 	}
-	
-	// res.pb(idx);
-	// getCombinations(n, k, idx+1, res, ans);
-	
-	// res.pop_back();
-	// getCombinations(n, k, idx+1, res, ans);
-	
 }
 
 void solve()
 {
 	
-	int n, k;
-	cin >> n >> k;
+	int k, sum;
+	cin >> k >> sum;
 	vvi ans;
 	vi res;
 	
-	getCombinations(n, k, 1, res, ans);
+	getCombinations(1, k, sum, res, ans);
 	
 	for(auto i : ans) {
 		for(auto j : i)

@@ -17,15 +17,37 @@ using namespace std;
 #define mk(arr,n,type)  type *arr=new type[n];
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
+ 
+void generate(int o, int c, string ros, vector<string> &ans) {
+	
+	if(o == 0 && c == 0) {
+		ans.pb(ros);
+		return;
+	}
+	if(c > o) {
+		ros.push_back(')');
+		generate(o, c-1, ros, ans);
+		ros.pop_back();
+	}
+
+	if(o > 0) {
+		ros.push_back('(');
+		generate(o-1, c, ros, ans);
+		ros.pop_back();
+	}
+
+}
 
 void solve()
 {
-	vector<int> v = {1,2,3,4};
+	int n;
+	cin >> n;
+	vector<string> ans;
 	
-	v.erase(v.begin(), v.begin()+2);
+	generate(n, n, "", ans);
 	
-	for(auto i : v)
-		cout << i << endl;
+	for(auto i : ans)
+		cout << i << ", ";
 	
 }
  
