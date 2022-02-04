@@ -21,12 +21,6 @@ void solve(vector<int> arr, int idx, int target, vector<int> res, set<vector<int
 		solve(arr, i+1, target-arr[i], res, ans);
 		res.pop_back();
 	}
-
-	// res.push_back(arr[idx]);
-	// solve(arr, idx+1, target-arr[idx], res, ans);
-	
-	// res.pop_back();
-	// solve(arr, idx+1, target, res, ans);
 }
 
 int main() {
@@ -43,11 +37,9 @@ int main() {
 	set<vector<int>> ans;
 	vector<int> res;
 	
-	// solve(arr, 0, target, res, ans);
 	solve(arr, 0, target, res, ans);
 	
 	vector<vector<int>> f;
-	
 	
 	for(auto i : ans) 
 		f.push_back(i);

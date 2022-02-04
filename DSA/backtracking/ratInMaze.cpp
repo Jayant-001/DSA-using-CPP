@@ -19,6 +19,7 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
+// check to go with <x,y> path is safe or not
 bool isSafe(int x, int y, int n, vector<vector<int>> visited, vector<vector<int>> arr) {
     if((x >= 0 && x < n) && (y >= 0 && y < n) && visited[x][y] == 0 && arr[x][y] == 1)
         return true;
