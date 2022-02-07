@@ -17,15 +17,63 @@ using namespace std;
 #define mk(arr,n,type)  type *arr=new type[n];
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
+ 
+bool checkEqual(vector<int> v) {
+	
+	for(int i = 0; i < v.size()-1; i++) {
+		if(v[i] != v[i+1])
+			return false;
+	}
+	return true;
+}
+
+void operation(vector<int> &v, int i) {
+	
+	v[i+1] = v[i] + v[i+1];
+	v.erase(v.begin() + i);
+}
 
 void solve()
 {
-	vector<int> v = {1,2,3,4};
+	int t;
+	cin >> t;
+	while(t--) {
+		int n;
+		cin >> n;
+		vector<int> arr(n);
+		for(int i = 0; i < n; i++)
+			cin >> arr[i];
+		
+		// corner cases
+		if(n == 1) {
+			cout << 0 << endl;
+			continue;
+		}
+		if(n == 2) {
+			cout << 1 << endl;
+			continue;
+		}
+		
+		int ct = 0;
+		int mx = INT_MIN;
+		for(int i = 0; i < n; i++)
+			if(mx < arr[i])
+				mx = arr[i];
+		
+		while(!checkEqual(arr)) {
+		
+			for(int i = 0; i < n-1; i++) {
+				
+				if( (arr[i] + arr[i+1]) == mx) {
+					operation(arr, i);
+					ct++;
+				}
+			}
+		}
+		
+		cout << ct << endl;
+	}
 	
-	v.erase(v.begin(), v.begin()+2);
-	
-	for(auto i : v)
-		cout << i << endl;
 	
 }
  

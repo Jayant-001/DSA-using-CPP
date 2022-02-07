@@ -60,7 +60,6 @@ Node* getMiddle(Node *head) {
 	}
 	
 	return slow;
-	
 }
 
 
