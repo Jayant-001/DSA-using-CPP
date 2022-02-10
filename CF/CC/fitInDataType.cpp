@@ -17,15 +17,29 @@ using namespace std;
 #define mk(arr,n,type)  type *arr=new type[n];
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
- 
+
 void solve()
 {
-	vector<int> v = {1,2,3,4};
 	
-	v.erase(v.begin()+2);
+	int t;
+	cin >> t;
+	while(t--) {
+		int n, x;
+		cin >> n >> x;
+		
+		int ans = 0;
+		if(x >= 0 && x <= n) 
+			cout << x << endl;
+		
+		else {
+			while(x > n) {
+				x = x-n;
+				x--;
+			}
+			cout << x << endl;
+		}
+	}
 	
-	for(auto i : v)
-		cout << i << " ";
 }
  
 int32_t main()

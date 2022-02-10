@@ -138,7 +138,7 @@ void solve()
 	
 	Node *t = getStartingNode(head);
 	// Node *t = detectLoop(head);
-	if(t == NULL) 
+	if(t == NULL)
 		cout << "No Cycle";
 	else
 		cout << "Cycle at node: " << t->data << endl;
