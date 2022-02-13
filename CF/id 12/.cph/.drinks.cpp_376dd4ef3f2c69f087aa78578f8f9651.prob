@@ -1,0 +1,1 @@
+{"name":"Local: drinks","url":"d:\\CP\\CF\\id 12\\drinks.cpp","tests":[{"id":1644515383082,"input":"3\n50 50 100","output":""},{"id":1644515507682,"input":"4\n0 25 50 75","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\id 12\\drinks.cpp","group":"local","local":true}

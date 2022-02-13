@@ -67,22 +67,19 @@ void solve()
 	for(int i = 0; i < total; i++) 
 		v[i] = i+1;
 	
-	int s = v.size()-1;
-	v.erase(v.begin()+1, v.begin()+2);
-	
-	for(auto i : v)
-		cout << i << " ";
-	
 	int temp = listSize/2;
-	// debug(listSize);
 	while(listSize--) {
-		int s = v.size()-1;
-		// cout << v[0] << " " << v[1] << " " << v[s] << " " << " " << v[s-1] << endl;
 		for(int i = 0; i < temp; i++) {
-			cout << v[0] << " " << v[v.size()-1] << " ";
-			v.erase(v.begin()+0);
-			v.erase(v.begin()+s);
+			cout << v[i] << " ";
 		}
+		
+		for(int i = v.size()-temp; i < v.size(); i++) {
+			cout << v[i] << " ";
+		}
+		
+		v.erase(v.begin(), v.begin() + temp);
+		v.erase(v.begin() + v.size()-temp, v.begin()+v.size());
+		cout << endl;
 	}
 }
 

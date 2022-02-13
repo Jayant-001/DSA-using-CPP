@@ -1,0 +1,1 @@
+{"name":"Local: subarrayWithGivenSum","url":"d:\\CP\\DSA\\questions\\subarrayWithGivenSum.cpp","tests":[{"id":1644521048824,"input":"7 100\n28 54 7 -70 22 65 -6\n","output":""},{"id":1644521340656,"input":"3 3\n1 2 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DSA\\questions\\subarrayWithGivenSum.cpp","group":"local","local":true}
