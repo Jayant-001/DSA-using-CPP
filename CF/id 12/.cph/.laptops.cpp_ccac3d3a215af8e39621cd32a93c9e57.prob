@@ -1,0 +1,1 @@
+{"name":"Local: laptops","url":"d:\\CP\\CF\\id 12\\laptops.cpp","tests":[{"id":1644831877056,"input":"2\n1 2\n2 1","output":""},{"id":1644831882443,"input":"2\n2 1\n1 2","output":""},{"id":1644832314170,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\id 12\\laptops.cpp","group":"local","local":true}
