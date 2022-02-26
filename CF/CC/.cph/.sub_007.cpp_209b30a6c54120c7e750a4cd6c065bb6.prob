@@ -1,0 +1,1 @@
+{"name":"Local: sub_007","url":"d:\\CP\\CF\\CC\\sub_007.cpp","tests":[{"id":1645278910005,"input":"2\n07007\n007007","output":""},{"id":1645279177047,"input":"5\n00070000770707070\n07070707007770700\n000\n777\n700","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\CC\\sub_007.cpp","group":"local","local":true}

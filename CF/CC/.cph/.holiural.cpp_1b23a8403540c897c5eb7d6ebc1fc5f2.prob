@@ -1,0 +1,1 @@
+{"name":"Local: holiural","url":"d:\\CP\\CF\\CC\\holiural.cpp","tests":[{"id":1645267164310,"input":"2\n3 10\n1 2 3\n3 2 1\n3 1\n2 4 6\n3 2 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\CC\\holiural.cpp","group":"local","local":true}
