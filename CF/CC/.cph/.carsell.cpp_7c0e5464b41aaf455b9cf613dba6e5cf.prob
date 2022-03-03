@@ -1,0 +1,1 @@
+{"name":"Local: carsell","url":"d:\\CP\\CF\\CC\\carsell.cpp","tests":[{"id":1646340129420,"input":"2\n3\n6 6 6\n3\n0 1 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\CF\\CC\\carsell.cpp","group":"local","local":true}
