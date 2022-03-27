@@ -22,10 +22,14 @@ int main() {
         }
     }
 
-    for (int i = 0; i <= n; i++) {
-        // string ans = isPrime[i] ? "true" : "false";
-        cout << i << " - " << (isPrime[i] ? "prime": "not prime") << endl;
-    }
+    // for (int i = 0; i <= n; i++) {
+    //     // string ans = isPrime[i] ? "true" : "false";
+    //     cout << i << " - " << (isPrime[i] ? "prime": "not prime") << endl;
+    // }
+    
+    for(int i = 0; i < n+1; i++)
+        if(isPrime[i])
+            cout << i << " ";
 
     return 0;
 }
