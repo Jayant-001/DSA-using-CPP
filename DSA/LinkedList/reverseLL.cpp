@@ -74,7 +74,7 @@ void reverse(Node* &head) {
     if(head == NULL || head->next == NULL) {
         return;
     }
-    
+
     Node *cur = head;
     Node *prev = NULL;
     Node *forward = NULL;
