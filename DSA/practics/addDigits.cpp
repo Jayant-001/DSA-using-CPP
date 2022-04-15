@@ -20,9 +20,24 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
+int addDig(int n) {
+	int t = 0;
+	while(n) {
+		t += (n%10);
+		n /= 10;
+	}
+	if(t < 10)
+		return t;
+	else
+		return addDig(t);
+}
+
 void solve()
 {
+	int n;
+	cin >> n;
 	
+	cout << addDig(n);
 }
  
 int32_t main()

@@ -22,9 +22,25 @@ using namespace std;
 
 void solve()
 {
+	string s;
+	cin >> s;
+	int h[26] = {0};
 	
+	for(int i = 0; i < s.length(); i++) 
+		h[s[i]-'a']++;
+	
+	int ct = 0;
+	for(int i = 0; i < 26; i++)
+		if(h[i] & 1)
+			ct++;
+	if(ct == 0 || ct&1)
+	cout << "First" << endl;
+	else
+		cout << "Second" << endl;
+	// else
+	// 	cout << "First" << endl;
 }
- 
+
 int32_t main()
 {
     solve();

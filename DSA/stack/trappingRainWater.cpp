@@ -35,15 +35,8 @@ void solve()
 	vector<int> arr(n);
 	for(int i = 0; i < n; i++)
 		cin >> arr[i];
-	// cout << arr.size();
 	vector<int> left = leftMax(arr);
 	vector<int> right = rightMax(arr);
-	// cout << left.size();
-	for(auto i : left)
-		cout << i << " " ;
-	cout << endl;
-	for(auto i : right)
-		cout << i << " ";
 	
 	int ans = 0;
 	for(int i = 1; i < n-1; i++) {
@@ -63,3 +56,6 @@ int32_t main()
     solve();
     return 0;
 }
+
+// 12
+//  0 1 0 2 1 0 1 3 2 1 2 1

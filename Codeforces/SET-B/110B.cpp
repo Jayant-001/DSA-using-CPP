@@ -23,6 +23,14 @@ using namespace std;
 void solve()
 {
 	
+	int n;
+	cin >> n;
+	string s = "abcd";
+	string ans  = "";
+	for(int i = 0; i < n; i++)
+		ans.push_back(s[i%4]);
+	
+	cout << ans;
 }
  
 int32_t main()

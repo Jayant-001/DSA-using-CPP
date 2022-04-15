@@ -22,6 +22,21 @@ using namespace std;
 
 void solve()
 {
+	int n, k;
+	cin >> n >> k;
+	vector<int> a(n);
+	for(int i = 0; i <n; i++)
+		cin >> a[i];
+	
+	for(int i = 0; i < n; i++)
+		a[i] += k;
+	
+	int ct = 0;
+	for(auto i : a)
+		if(i <= 5)
+			ct++;
+		
+	cout << (ct/3);
 	
 }
  

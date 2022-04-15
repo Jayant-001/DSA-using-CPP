@@ -22,7 +22,14 @@ using namespace std;
 
 void solve()
 {
-	
+	w(t){
+	int n;
+	cin >> n;
+	if(360 % (180-n) == 0)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	}
 }
  
 int32_t main()

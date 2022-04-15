@@ -1,1 +1,0 @@
-{"name":"Local: partitionEqualSubsetSum","url":"c:\\myFiles\\CP\\DSA\\dp\\0-1Knapsack\\partitionEqualSubsetSum.cpp","tests":[{"id":1634210774918,"input":"5\n3 1 5 9 12","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\myFiles\\CP\\DSA\\dp\\0-1Knapsack\\partitionEqualSubsetSum.cpp","group":"local","local":true}
