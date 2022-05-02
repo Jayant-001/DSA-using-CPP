@@ -20,53 +20,58 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
+// custom comperator
+static bool comp1(string s1, string s2) {
+    return (s1+s2) > (s2+s1);
 
-
-ll dp[1001][1001];
-ll slv(ll i, ll j, vector<ll> sw, vector<ll> cs) {
-	
-	if(j == 0)
-		return 0;
-	if(i == 0)
-		return 0;
-	
-	if(dp[i][j] != -1)
-		return dp[i][j];
-	
-	if(sw[i-1] > j)
-		return dp[i][j] = slv(i-1, j, sw, cs);
-	
-	ll a = 1 + slv(i, (j-sw[i-1]) + cs[i-1], sw, cs);
-	ll b = slv(i-1, j, sw, cs);
-	
-	return dp[i][j] = max(a, b);
-	
 }
 
 void solve()
 {
-	ll n, k;
-	cin >> n >> k;
+	int n;
+	cin >> n;
+	vector<int> arr(n);
+	for(int i = 0; i< n; i++)
+		cin >> arr[i];
 	
-	vector<ll> sweet(n);
-	vector<ll> csb(n);
-	for(ll i = 0; i < n;i++) 
-		cin >> sweet[i];
-	for(ll i = 0; i < n ;i++)
-		cin >> csb[i];
-	
-	dp[n+1][k+1];
-	memset(dp, -1, sizeof(dp));
-	
-	cout << slv(n, k, sweet, csb) << endl;
-	
-	
+	vector<string> s;
+    for(auto i : arr)
+        s.push_back(to_string(i));
+    
+    for(int i = 0; i < n; i++) {
+        for(int j = i+1; j < n; j++) {
+            if(!comp1(s[i], s[j]))
+                swap(s[i], s[j]);
+        }
+    }
+    
+    if(s[0] == "0"){
+        cout << "0";
+        return;
+    }
+    
+    string ans = "";
+    for(int i = 0; i < s.size(); i++) {
+        ans += s[i];
+    }
+    
+    cout << ans;
 }
  
 int32_t main()
 {
-	w(t) {
     solve();
-}
     return 0;
 }
+
+
+/*
+// test case
+[0,0]
+[10,2]
+[3,30,34,5,9]
+[1,1,1,1,2,2,3,4,4]
+[1]
+[1,0,2,3,0]
+[34323,3432]
+*/

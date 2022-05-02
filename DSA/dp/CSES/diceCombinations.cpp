@@ -32,8 +32,6 @@ int getCombinations(int t) {
 	return getCombinations(t) + getCombinations(t-1);
 }
 
-// memoization
-void solv()
 
 void solve()
 {

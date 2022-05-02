@@ -20,53 +20,43 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-
-
-ll dp[1001][1001];
-ll slv(ll i, ll j, vector<ll> sw, vector<ll> cs) {
-	
-	if(j == 0)
-		return 0;
-	if(i == 0)
-		return 0;
-	
-	if(dp[i][j] != -1)
-		return dp[i][j];
-	
-	if(sw[i-1] > j)
-		return dp[i][j] = slv(i-1, j, sw, cs);
-	
-	ll a = 1 + slv(i, (j-sw[i-1]) + cs[i-1], sw, cs);
-	ll b = slv(i-1, j, sw, cs);
-	
-	return dp[i][j] = max(a, b);
-	
-}
-
 void solve()
 {
-	ll n, k;
-	cin >> n >> k;
+	int n;
+	cin >> n;
+	vi arr(n);
+	for(int i= 0; i < n; i++)
+		cin >> arr[i];
 	
-	vector<ll> sweet(n);
-	vector<ll> csb(n);
-	for(ll i = 0; i < n;i++) 
-		cin >> sweet[i];
-	for(ll i = 0; i < n ;i++)
-		cin >> csb[i];
+	int ans = 0;
 	
-	dp[n+1][k+1];
-	memset(dp, -1, sizeof(dp));
+	for(int i = 1; i < n-1; i++) {
+		bool c1 = false;
+		bool c2 = false;
+		if(arr[i] == 0 && arr[i-1] == 1 && arr[i+1] == 1)
+			c1 = true;
+		int t = i+2;
+		if(arr[t] == 0 && arr[t-1] == 1 && arr[t+1] == 1)
+			c2 = true;
+		
+		if(c1 && c2) {
+			arr[i+1] = 0;
+			ans++;
+		}
+		
+		else if(c1) {
+			arr[i-1] = 0;
+			ans++;
+		}
+	}
 	
-	cout << slv(n, k, sweet, csb) << endl;
-	
-	
+	cout << ans << endl;
+	// for(auto i : arr)
+	// 	cout << i << " ";
 }
  
 int32_t main()
 {
-	w(t) {
     solve();
-}
     return 0;
 }

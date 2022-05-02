@@ -44,7 +44,7 @@ void solve()
 	cout << t << endl;
 	
 }
- 
+
 int32_t main()
 {
     solve();

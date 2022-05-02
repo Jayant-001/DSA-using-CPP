@@ -20,53 +20,28 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-
-
-ll dp[1001][1001];
-ll slv(ll i, ll j, vector<ll> sw, vector<ll> cs) {
-	
-	if(j == 0)
-		return 0;
-	if(i == 0)
-		return 0;
-	
-	if(dp[i][j] != -1)
-		return dp[i][j];
-	
-	if(sw[i-1] > j)
-		return dp[i][j] = slv(i-1, j, sw, cs);
-	
-	ll a = 1 + slv(i, (j-sw[i-1]) + cs[i-1], sw, cs);
-	ll b = slv(i-1, j, sw, cs);
-	
-	return dp[i][j] = max(a, b);
-	
-}
-
 void solve()
 {
-	ll n, k;
-	cin >> n >> k;
+	int n;
+	cin >> n;
+	string s;
+	cin >> s;
 	
-	vector<ll> sweet(n);
-	vector<ll> csb(n);
-	for(ll i = 0; i < n;i++) 
-		cin >> sweet[i];
-	for(ll i = 0; i < n ;i++)
-		cin >> csb[i];
+	for(int i = 0; i < n-1; i++)
+		if(s[i] > s[i+1]) {
+			s.erase(s.begin()+i);
+			break;
+		}
 	
-	dp[n+1][k+1];
-	memset(dp, -1, sizeof(dp));
+	if(s.length() == n)
+		s.erase(s.begin()+n-1);
 	
-	cout << slv(n, k, sweet, csb) << endl;
-	
+	cout << s;
 	
 }
  
 int32_t main()
 {
-	w(t) {
     solve();
-}
     return 0;
 }

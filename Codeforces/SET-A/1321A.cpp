@@ -20,53 +20,51 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-
-
-ll dp[1001][1001];
-ll slv(ll i, ll j, vector<ll> sw, vector<ll> cs) {
-	
-	if(j == 0)
-		return 0;
-	if(i == 0)
-		return 0;
-	
-	if(dp[i][j] != -1)
-		return dp[i][j];
-	
-	if(sw[i-1] > j)
-		return dp[i][j] = slv(i-1, j, sw, cs);
-	
-	ll a = 1 + slv(i, (j-sw[i-1]) + cs[i-1], sw, cs);
-	ll b = slv(i-1, j, sw, cs);
-	
-	return dp[i][j] = max(a, b);
-	
-}
-
 void solve()
 {
-	ll n, k;
-	cin >> n >> k;
+	int n;
+	cin >> n;
+	vi a(n);
+	vi b(n);
+	for(int i = 0; i < n; i++)
+		cin >> a[i];
+	for(int i = 0; i < n;i++)
+		cin >> b[i];
 	
-	vector<ll> sweet(n);
-	vector<ll> csb(n);
-	for(ll i = 0; i < n;i++) 
-		cin >> sweet[i];
-	for(ll i = 0; i < n ;i++)
-		cin >> csb[i];
+	int s1 = 0;
+	int s2 = 0;
+	for(int i = 0; i < n;i++) {
+		if(a[i] == 1 && b[i] == 0)
+			s1++;
+		if(a[i] == 0 && b[i] == 1)
+			s2++;
+	}
 	
-	dp[n+1][k+1];
-	memset(dp, -1, sizeof(dp));
+	if(s1 == s2 && s1 == 0) {
+		cout << -1;
+		return;
+	}
+	if(s1 == 0) {
+		cout << -1;
+		return;
+	}
 	
-	cout << slv(n, k, sweet, csb) << endl;
-	
+	int ans = 1;
+	int val = s1;
+	for(int i = 1; i <= 100006; i++) {
+		if(s1 <= s2) {
+			s1 = val*i;
+			ans = i;
+		}
+		else
+			break;
+	}
+	cout << ans;
 	
 }
  
 int32_t main()
 {
-	w(t) {
     solve();
-}
     return 0;
 }

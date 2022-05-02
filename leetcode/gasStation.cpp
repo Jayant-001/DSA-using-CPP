@@ -20,53 +20,51 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-
-
-ll dp[1001][1001];
-ll slv(ll i, ll j, vector<ll> sw, vector<ll> cs) {
+bool check(vector<int> gas, vector<int> cost, int idx) {
 	
-	if(j == 0)
-		return 0;
-	if(i == 0)
-		return 0;
+	int n = gas.size();
+	int t = 0;
+	while(n--) {
+		
+		if(t+gas[idx] < cost[idx])
+			return false;
+		t = (t+gas[idx]-cost[idx]);
+		idx = (idx+1)%gas.size();
+	}
 	
-	if(dp[i][j] != -1)
-		return dp[i][j];
-	
-	if(sw[i-1] > j)
-		return dp[i][j] = slv(i-1, j, sw, cs);
-	
-	ll a = 1 + slv(i, (j-sw[i-1]) + cs[i-1], sw, cs);
-	ll b = slv(i-1, j, sw, cs);
-	
-	return dp[i][j] = max(a, b);
-	
+	return true;
 }
 
 void solve()
 {
-	ll n, k;
-	cin >> n >> k;
+	int n;
+	cin >> n;
+	vector<int> gas(n);
+	vector<int> cost(n);
+	for(int i = 0; i < n; i++)
+		cin >> gas[i];
+	for(int i = 0; i < n; i++)
+		cin >> cost[i];
 	
-	vector<ll> sweet(n);
-	vector<ll> csb(n);
-	for(ll i = 0; i < n;i++) 
-		cin >> sweet[i];
-	for(ll i = 0; i < n ;i++)
-		cin >> csb[i];
-	
-	dp[n+1][k+1];
-	memset(dp, -1, sizeof(dp));
-	
-	cout << slv(n, k, sweet, csb) << endl;
-	
-	
+	int ans = 0;
+	int total = 0;
+	int surplus = 0;
+	int S = 0;
+	for(int i = 0; i < n; i++) {
+		total += gas[i] - cost[i];
+		surplus += gas[i] - cost[i];
+		if(surplus<0) {
+			surplus = 0;
+			S = i+1;
+		}
+	}
+	ans = total < 0 ? -1 : S;
+
+	cout << ans;
 }
  
 int32_t main()
 {
-	w(t) {
     solve();
-}
     return 0;
 }
