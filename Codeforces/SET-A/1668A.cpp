@@ -20,50 +20,29 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-void solve() {
-	string s;
-	cin >> s;
-
-	map<char, int> lstIdx;
-	map<char, bool> visited;
+void solve()
+{
 	
-	for(int i = 0; i < s.length(); i++) 
-		lstIdx[s[i]] = i;
-	// for(auto i : lstIdx) {
-	// 	cout << i.first << " " << i.second << endl;
-	// }
-	
-	string ans = "";
-	for(int i= 0; i < s.length(); i++) {
-		if(visited[s[i]] == true)
-			continue;
+	w(t) {
+		int n, m;
+		cin >> n >> m;
 		
-		while(!ans.empty() && ans.back() > s[i] && lstIdx[ans.back()] > i) {
-			visited[ans.back()] = false;
-			ans.pop_back();
+		if(min(n, m) == 1 && max(n, m) > 2)
+			cout << -1 << endl;
+		else {
+			m--;
+			n--;
+			int ans = (n+m) + ((max(m,n) - min(m,n)) / 2) * 2;
+			cout << ans << endl;
 		}
-		ans.push_back(s[i]);
-		visited[s[i]] = true;
+		
+		
 	}
 	
-	
-	
-	cout << ans;
 }
  
 int32_t main()
 {
-    solve2();
+    solve();
     return 0;
 }
-
-// [1,2,3,6,2,3,4,7,8]
-// 3
-// [1,2,3,4,5]
-// 4
-// [1,2,3,1,2,3,1,2,3]
-// 3
-// [12,2,46,54,47,13,55,3]
-// 2
-// [2,3,46,47,12,13,54,55]
-// 3

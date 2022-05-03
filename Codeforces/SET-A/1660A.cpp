@@ -20,50 +20,23 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-void solve() {
-	string s;
-	cin >> s;
-
-	map<char, int> lstIdx;
-	map<char, bool> visited;
-	
-	for(int i = 0; i < s.length(); i++) 
-		lstIdx[s[i]] = i;
-	// for(auto i : lstIdx) {
-	// 	cout << i.first << " " << i.second << endl;
-	// }
-	
-	string ans = "";
-	for(int i= 0; i < s.length(); i++) {
-		if(visited[s[i]] == true)
-			continue;
-		
-		while(!ans.empty() && ans.back() > s[i] && lstIdx[ans.back()] > i) {
-			visited[ans.back()] = false;
-			ans.pop_back();
+void solve()
+{
+	w(t) {
+		int a, b;
+		cin >> a >> b;
+		if(a == 0)
+			cout << 1 << endl;
+		else if(b == 0)
+			cout << a+1 << endl;
+		else {
+			cout << (a+(b*2))+1 << endl;
 		}
-		ans.push_back(s[i]);
-		visited[s[i]] = true;
 	}
-	
-	
-	
-	cout << ans;
 }
  
 int32_t main()
 {
-    solve2();
+    solve();
     return 0;
 }
-
-// [1,2,3,6,2,3,4,7,8]
-// 3
-// [1,2,3,4,5]
-// 4
-// [1,2,3,1,2,3,1,2,3]
-// 3
-// [12,2,46,54,47,13,55,3]
-// 2
-// [2,3,46,47,12,13,54,55]
-// 3

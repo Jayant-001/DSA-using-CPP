@@ -20,50 +20,66 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-void solve() {
-	string s;
-	cin >> s;
+void flip(vector<int> &arr, int k) {
+	int i = 0;
+	int j = k;
+	while(i < j) {
+		swap(arr[i++], arr[j--]);
+	}
+}
 
-	map<char, int> lstIdx;
-	map<char, bool> visited;
-	
-	for(int i = 0; i < s.length(); i++) 
-		lstIdx[s[i]] = i;
-	// for(auto i : lstIdx) {
-	// 	cout << i.first << " " << i.second << endl;
-	// }
-	
-	string ans = "";
-	for(int i= 0; i < s.length(); i++) {
-		if(visited[s[i]] == true)
-			continue;
-		
-		while(!ans.empty() && ans.back() > s[i] && lstIdx[ans.back()] > i) {
-			visited[ans.back()] = false;
-			ans.pop_back();
+int find(vector<int> arr, int k) {
+	for(int i= 0; i < arr.size(); i++)
+		if(arr[i] == k) 
+			return i;
+}
+
+void solve()
+{
+	int n;
+	cin >> n;
+	vector<int> arr(n);
+	for(int i = 0; i < n ; i++)
+		cin >> arr[i];
+
+	vector<int> ans;
+	int b = 0;
+
+	int k = n;
+	int j = n-1;
+	for(int i = 0; i < n-1; i++) {
+		int pos = find(arr, k);
+		cout << k << " " << pos << endl;
+		if(pos == j)
+			b++;
+		else if(pos == 0) {
+			flip(arr, j);
+			ans.push_back(j);
 		}
-		ans.push_back(s[i]);
-		visited[s[i]] = true;
+		else {
+			flip(arr, pos);
+			ans.push_back(pos);
+			flip(arr, j);
+			ans.push_back(j);
+		}
+		
+		j--;
+		k--;
+		// for(auto i : arr)
+		// 	cout << i << " ";
+		// cout << endl;
 	}
 	
 	
 	
-	cout << ans;
+	// flip(arr, 3);
+	
+	for(auto i : ans)
+		cout << i+1 << " ";
 }
  
 int32_t main()
 {
-    solve2();
+    solve();
     return 0;
 }
-
-// [1,2,3,6,2,3,4,7,8]
-// 3
-// [1,2,3,4,5]
-// 4
-// [1,2,3,1,2,3,1,2,3]
-// 3
-// [12,2,46,54,47,13,55,3]
-// 2
-// [2,3,46,47,12,13,54,55]
-// 3

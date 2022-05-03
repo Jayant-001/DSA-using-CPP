@@ -20,50 +20,40 @@ using namespace std;
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
 
-void solve() {
-	string s;
-	cin >> s;
-
-	map<char, int> lstIdx;
-	map<char, bool> visited;
+void solve()
+{
 	
-	for(int i = 0; i < s.length(); i++) 
-		lstIdx[s[i]] = i;
-	// for(auto i : lstIdx) {
-	// 	cout << i.first << " " << i.second << endl;
-	// }
+	w(t) {
+		int n;
+		cin >> n;
+		vector<int> arr(n);
+		for(int i = 0; i < n; i++)
+			cin >> arr[i];
 	
-	string ans = "";
-	for(int i= 0; i < s.length(); i++) {
-		if(visited[s[i]] == true)
-			continue;
-		
-		while(!ans.empty() && ans.back() > s[i] && lstIdx[ans.back()] > i) {
-			visited[ans.back()] = false;
-			ans.pop_back();
+		bool c = true;
+		arr[0] += 1;
+		for(int i = 1; i < n; i++) {
+			if(arr[i] - arr[i-1] > 2) {
+				c = false;
+				break;
+			}
+			else if(arr[i] - arr[i-1] == 2) {
+				arr[i] -= 1;
+			}
+			else if(arr[i] == arr[i-1])
+				arr[i] += 1;
 		}
-		ans.push_back(s[i]);
-		visited[s[i]] = true;
+	
+		if(c)
+			cout << "YES" << endl;
+		else
+			cout << "NO" << endl;
+	
 	}
-	
-	
-	
-	cout << ans;
 }
  
 int32_t main()
 {
-    solve2();
+    solve();
     return 0;
 }
-
-// [1,2,3,6,2,3,4,7,8]
-// 3
-// [1,2,3,4,5]
-// 4
-// [1,2,3,1,2,3,1,2,3]
-// 3
-// [12,2,46,54,47,13,55,3]
-// 2
-// [2,3,46,47,12,13,54,55]
-// 3
