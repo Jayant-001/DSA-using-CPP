@@ -5,6 +5,7 @@ void getSubSeq(string s, string res, vector<string> &ans, int i) {
 	
 	if(i >= s.size()) {
 		ans.push_back(res);
+		cout << res << endl;
 		return;
 	}
 	

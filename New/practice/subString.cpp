@@ -12,6 +12,7 @@ void subString(string s, int l, string res) {
 		// 	ct = temp > ct ? temp : ct;
 		// }
 		// cout << res << endl;
+		cout << res << endl;
 		v.push_back(res);
 		return;
 	}
