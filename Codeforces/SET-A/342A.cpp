@@ -22,12 +22,30 @@ using namespace std;
 
 void solve()
 {
-	int n, k; 
-	cin >> n >> k;
-	vector<int> arr(n);
-	for(int i = 0; i < n; i++) cin >> arr[i];
+	int n; cin >> n;
+	int arr[8] = {0};
+	for(int i = 0;i < n; i++) {
+		int t;
+		cin >> t;
+		++arr[t];
+	}
 	
-	sort(arr.begin(), arr.end());
+	if(arr[5] == 0 && arr[7] == 0 && arr[2] >= arr[4] 
+		&& arr[1] == arr[4]+arr[6] && arr[2] + arr[3] == arr[4] + arr[6]) {
+		
+		for(int i = 0; i < arr[4]; i++)
+			cout << "1 2 4" << endl;
+		arr[2] -= arr[4];
+		for(int i = 0; i < arr[2]; ++i)
+			cout << "1 2 6" << endl;
+		for(int i= 0; i < arr[3]; ++i)
+			cout << "1 3 6" << endl;
+	}
+	else
+		cout << -1;
+	
+	
+	
 }
  
 int32_t main()

@@ -1,6 +1,7 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include <vector>
 using namespace std;
-
+ 
 #define ll             	long long
 #define lli				long long int
 #define vi              vector<int>
@@ -19,21 +20,48 @@ using namespace std;
 #define mk(arr,n,type)  type *arr=new type[n];
 #define w(x)            int x; cin>>x; while(x--)
 #define debug(x) cout << #x << " " << x << endl;
-
+#define debugarr(arr) for(auto i : arr) cout << i << " ";
+ 
 void solve()
 {
-	int n, k; 
+	int n, k;
 	cin >> n >> k;
-	vector<int> arr(n);
-	for(int i = 0; i < n; i++) cin >> arr[i];
+	vector<int> a1(3001, 0);
+	vector<int> a2(3001, 0);
+	for(int i = 0; i < n; i++) {
+		int a, b;
+		cin >> a >> b;
+		a1[a] += b;
+	}		
 	
-	sort(arr.begin(), arr.end());
+	int cur = 0;
+	int ans = 0;
+	int prev = 0;
+	for(int i = 0; i < 3001; i++) {
+		cur = a1[i] + prev;
+		// if(cur == 0) {
+		// 	ans += prev;
+		// 	prev = 0;
+		// }
+		 if(cur > k) {
+			ans += k;
+			prev = min(cur-k, k);
+		}
+		else {
+			ans += cur;
+			prev = 0;
+		}
+	}
+	
+	if(prev)
+		ans += min(prev, k);
+	cout << ans;
 }
  
 int32_t main()
 {
-	//w(t) {
+	// w(t) {
 	    solve();
-    //}
+    // }
     return 0;
 }

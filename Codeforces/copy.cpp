@@ -22,18 +22,27 @@ using namespace std;
 
 void solve()
 {
-	int n, k; 
-	cin >> n >> k;
-	vector<int> arr(n);
-	for(int i = 0; i < n; i++) cin >> arr[i];
 	
-	sort(arr.begin(), arr.end());
+	ll x, y;
+	cin >> x >> y;
+	ll n = abs(x-y);
+	ll ans = 0;
+	for(int i = 1; i <= sqrt(n); i++) {
+		if((n%i == 0)) {
+			if(n/i == i) {
+				ans++;
+			}
+			else
+				ans+=2;
+		}
+	}
+	cout << ans << endl;
 }
- 
+
 int32_t main()
 {
-	//w(t) {
+	w(t) {
 	    solve();
-    //}
+    }
     return 0;
 }

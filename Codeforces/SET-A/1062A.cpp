@@ -22,12 +22,55 @@ using namespace std;
 
 void solve()
 {
-	int n, k; 
-	cin >> n >> k;
+	int n; cin >> n;
 	vector<int> arr(n);
 	for(int i = 0; i < n; i++) cin >> arr[i];
+
+	int ans = 0;
+	int temp = 0;
+	// first 1
+	if(arr[0] == 1) {
+		for(int i = 1; i < n; i++) {
+			if(arr[i] == arr[i-1]+1) 
+				temp++;
+			else
+				break;
+		}
+	}
+	ans = max(ans, temp);
+	temp = 0;
+	// last 1000
+	// debug(temp);
+	if(arr[n-1] == 1000) {
+		for(int i = n-2; i >= 0; i--) {
+			if(arr[i] == arr[i+1]-1)
+				temp++;
+			else
+				break;
+		}
+	}
+	ans = max(ans, temp);
+	// debug(temp);
+	// middle
+	// else {
+		stack<int> s;
+		for(int i = 0; i < n; i++) {
+			// cout << arr[i] << " ";
+			if(s.empty() || arr[i] == s.top()+1) {
+				s.push(arr[i]);
+			}
+			else  {
+				while(!s.empty())
+					s.pop();
+				s.push(arr[i]);
+			}
+				int t = s.size();
+				ans = max(ans, t-2);
+		}
+	// }
 	
-	sort(arr.begin(), arr.end());
+		ans = max(ans, temp);	
+	cout << ans;
 }
  
 int32_t main()
