@@ -18,65 +18,59 @@ using namespace std;
 #define ps(x,y)         fixed<<setprecision(y)<<x
 #define mk(arr,n,type)  type *arr=new type[n];
 #define w(x)            int x; cin>>x; while(x--)
-#define debug(x) cout << #x << "-> " << x << endl;
+#define debug(x) cout << #x << " " << x << endl;
 
-// ------- simple recursion ------
-int fib(int n) {
-	if(n == 1 || n == 0) return n;
-	return fib(n-1) + fib(n-2);
+int countR(int n) {
+	if(n == 1 || n == 2) return n;
+	return countR(n-1) + countR(n-2);
 }
 
-// ------ memoization (top-down) -----------
-int fib2(int n, vector<int> &a1) {
-	if(n == 1 || n == 0) return n;
-	if(a1[n] != -1) return a1[n];
+int countM(int n, vector<int> &dp) {
+	if(n == 1 || n == 2) return n;
+	if(dp[n] != -1) return dp[n];
 	
-	a1[n] = fib2(n-1, a1) + fib2(n-2, a1);
-	return a1[n];
-}
-
-// ------- tabulation (bottom-up) -----------
-int fibT(int n) {
-	int dp[n+1];
-	dp[0] = 0;
-	dp[1] = 1;
-	
-	for(int i = 2; i < n+1; i++) {
-		dp[i] = dp[i-1] + dp[i-2];
-	}
+	dp[n] = countM(n-1, dp) + countM(n-2, dp);
 	return dp[n];
 }
 
-// -------- space optimization ----------
-int fib3(int n) {
-	int prev2 = 0;
-	int prev1 = 1;
-	if(n == 0) return 0;
-	for(int i = 2; i <= n;i++) {
+int countS(int n) {
+	if(n == 1 || n == 2) return n;
+	int prev1 = 2;
+	int prev2 = 1;
+	for(int i = 3; i < n+1; i++) {
 		int cur = prev1 + prev2;
 		prev2 = prev1;
 		prev1 = cur;
 	}
 	return prev1;
 }
+// tabulation
+int countT(int n) {
+	int dp[n+1];
+	dp[1] = 1;
+	dp[2] = 2;
+	
+	for(int i = 3; i < n+1; i++) 
+		dp[i] = dp[i-2] + dp[i-1];
+	
+	return dp[n];
+}
 
 void solve()
 {
 	int n; cin >> n;
-	debug(fib(n));
 	
-	// memoization
-	vector<int> a1(n+1, -1);
-	a1[0] = 0;
-	a1[1] = 1;
+	debug(countR(n));
 	
-	debug(fib2(n, a1));
+	vector<int> dp(n+1, -1);
+	dp[1] = 1;
+	dp[2] = 2;
 	
-	debug(fibT(n));
+	debug(countM(n, dp));
 	
-	cout << "Space optimizaiotn" << endl;
-	debug(fib3(n));
+	debug(countT(n));
 	
+	debug(countS(n));
 }
  
 int32_t main()
