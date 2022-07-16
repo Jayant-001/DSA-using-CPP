@@ -52,49 +52,24 @@ using namespace std;
 
 void solve() {
 
-	// string s = "abcdef";
-	// s.erase(1, 2);
-	// cout << s;
-
-	int n; cin >> n;
-	string s; cin >> s;
-
-	int op = 0;
-	int i = 0;
-	while(i < n) {
-		if(i == n-1) break;
-		if(s[i] == '(') {
-			op++;
-			s[i] = '_';
-			s[i+1] = '_';
-			i += 2;
-		}
-		if(i == n-1) break;
-		else if(s[i] == ')'){
-			int k = i+1;
-			while(k < n && s[k] != ')') k++;
-			// debug(k);
-			if(k < n) {
-				s[k] = '_';
-				op++;
-			}
-			else break;
-			i = k+1;
-		}
-
+	int n, c, q;
+	cin >> n >> c >> q;
+	string s;
+	cin >> s;
+	for(int i = 0; i < c; i++) {
+		int a, b;
+		cin >> a >> b;
+		s += s.substr(a-1, b-a+1);
 	}
-	int ct = 0;
-	for(int j = n-1; j >= 0; j--) {
-		if(s[j] == '_') break;
-		ct++;
+
+	for(int i = 0; i < q; i++) {
+		int k; cin >> k;
+		cout << s[k-1] << endl;
 	}
-	// debug(ct);
+
 	// cout << s << endl;
-	if(n == 1)
-		printf("%d %d\n", 0, 1);
-	else
-		printf("%d %d\n", op, ct);
 
+	// cout << (f ? "YES" : "NO") << endl;
 }
 
 // int32_t main()
