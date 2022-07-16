@@ -48,26 +48,43 @@ using namespace std;
 // }
 
 
+	int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    int sum = 0;
+	    for(int i = 0; i < n; i++)
+	        sum += arr[i];
+	        
+	    int dp[n+1][sum+1];
+	    for(int i = 0; i < sum+1; i++)
+	        dp[0][i] = 0;
+	   for(int i = 0; i < n+1; i++)
+	        dp[i][0] = 1;
+	        
+	   for(int i = 1; i < n+1; i++) {
+	       for(int j = 1; j < sum+1; j++) {
+	           if(arr[i-1] <= j)
+	                dp[i][j] = dp[i-1][j-arr[i-1]] || dp[i-1][j];
+	           else 
+	                dp[i][j]  = dp[i-1][j];
+	       }
+	   }
+	   int ans = INT_MAX;
+	   for(int i= 0; i <= sum/2; i++) {
+	       //cout << dp[n][i];
+	       if(dp[n][i] == 1) ans = min(ans, sum-(2*i));
+	   }
+	   
+	   return ans;
+	    
+	} 
+
 
 
 void solve() {
 
-	int n, c, q;
-	cin >> n >> c >> q;
-	string s;
-	cin >> s;
-	for(int i = 0; i < c; i++) {
-		int a, b;
-		cin >> a >> b;
-		s += s.substr(a-1, b-a+1);
-	}
-
-	for(int i = 0; i < q; i++) {
-		int k; cin >> k;
-		cout << s[k-1] << endl;
-	}
-
-	// cout << s << endl;
+	int arr[] = {1,6,11,5};
+	int n = 4;
+	cout << minDifference(arr, n);
 
 	// cout << (f ? "YES" : "NO") << endl;
 }
