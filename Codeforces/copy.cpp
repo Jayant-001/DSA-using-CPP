@@ -79,35 +79,63 @@ vector<lli> getPost(vector<lli> arr, int n) {
 }
 
 void solve() {
-
-	bool ans = false;
 	int n; cin >> n;
-	vector<int> arr(5, 0);
-	for(int i = 0; i < n; i++) {
-		int k = -1; 
-		for(int j = 0; j < 5; j++) {
-			cin >> k;
-			arr[j] += k;
-		}
-			if(k == -1) {cout << "YES" << endl; return;}
-	}
+	vi arr(n);
+	for(int i = 0; i < n; i++) 
+		cin >> arr[i];
 
-	int f = -1;
-	for(int i = 0; i < 5; i++) {
-		if(arr[i] >= n/2) {
-			f = i;
+	int cost = 0;
+	int i = 1;
+	while(i < n-1) {
+		int a = max(0, max(arr[i+1]+1 - arr[i], arr[i-1]+1-arr[i]));
+		cout << "odd "; debug(a);
+		cost += a;
+		i += 2;
+	}
+	// debug(cost);
+	if(n %2 == 0) {
+		i = 2; 
+		int temp = 0;
+		while(i < n-1) {
+			int a = max(0, max(arr[i+1]+1 - arr[i], arr[i-1]+1-arr[i]));
+			// cout << "odd "; debug(a);
+			temp += a;
+			i += 2;
+		}	
+		cost = min(cost, temp);
+	// debug(temp);
+	}
+	cout << cost << endl;
+}
+
+void solve1() {
+
+	int n; cin >> n;
+	// vi arr(n);
+	// for(int i = 0; i < n; i++) 
+	// 	cin >> arr[i];
+
+	string s;
+	cin >> s;
+	string ans = "";
+	for(int i = 1; i < s.length(); i++) {
+
+		if(s[i] >= s[i-1]) {
+			ans = s.substr(0, i);
+			string k  = ans;
+			reverse(k.begin(), k.end());
+			ans += k;
 			break;
 		}
 	}
 
-	// for(auto i : arr) cout << i << " ";
-
-// debug(f);
-	for(int i = 0; i < 5; i++) {
-		if(i != f && arr[i] >= n/2) ans = true;
+	if(ans == "") {
+		string k  = s;
+		reverse(k.begin(), k.end());
+		ans = s + k;
 	}
 
-	cout << (ans ? "YES" : "NO") << endl;;
+	cout << ans << endl;
 }
 
 int32_t main()

@@ -45,7 +45,7 @@ using namespace std;
 // 			r = mid-1;
 // 	}
 // 	return -1;
-// }
+// }	
 
 
 	int minDifference(int arr[], int n)  { 
@@ -78,15 +78,103 @@ using namespace std;
 	    
 	} 
 
+int getOdd(vector<int> arr) {
+    int ct = 0;
+    for(auto i : arr) {
+        if(i&1) ct++;
+    }
+    return ct;
+}
 
+int getEven(vector<int> arr) {
+    int ct = 0;
+    for(auto i : arr) {
+        if(i % 2 == 0) 
+            ct++;
+    }
+    return ct;
+}
+
+int factorial(int n) {
+    int factorial = 1;
+    for (int i = 2; i <= n; i++)
+        factorial = factorial * i;
+    return factorial;
+}
+
+int ncr(int n, int r) {
+    return factorial(n) / (factorial(r) * factorial(n - r));
+}
+
+int getPath(vector<vector<char>> arr, int i, int j, int n) {
+
+	if(i == n-1 && j == n-1) return 1;
+	if(i < 0 || i >= n || j < 0 || j >= n) return 0;
+	// if(arr[i][j] == '*') return 0;
+
+	cout << i << " " << j << endl;
+	int ans = 0;
+	ans += getPath(arr, i, j-1, n);
+	ans += getPath(arr, i, j+1, n);
+	// ans += getPath(arr, i-1, j, n);
+	ans += getPath(arr, i+1, j, n);
+
+	return ans;
+	// for(auto p : arr) {
+	// 	for(auto q : p)
+	// 		cout << q << " ";
+	// 	cout << endl;
+	// }
+	// return 0;
+}
+
+bool check(string s) {
+	debug(s);
+	string t = "";
+	unsigned long long n = 0;
+	for(auto i: s)
+		if(i != '_')
+			n = (n* 10) + (i-'0');
+	if(n < 25) return false;
+	return (n % 25 == 0);
+}
+
+int dp[101][101];
+int slv(vector<int> &arr, int n, int sum) {
+
+	if(n <= 0) return 0;
+	if(sum <= 0) return 0;
+	if(dp[n][sum] != -1) return dp[n][sum];
+	if(arr[n-1] <= sum) {
+		return dp[n][sum] = max(1+slv(arr, n-1, sum-arr[n-1]) , slv(arr, n-1, sum));
+	}
+	return dp[n][sum] = slv(arr, n-1, sum);	
+}
+
+int cal(int num){
+	int ans = 0;
+	while (num){
+		ans += num % 10;
+		num /= 10;
+	}
+	return ans;
+}
 
 void solve() {
 
-	int arr[] = {1,6,11,5};
-	int n = 4;
-	cout << minDifference(arr, n);
+	// int n, k; cin >> n >> k;
+	// vector<int> arr(n);
+	// for(int i= 0; i < n; i++)
+	// 	cin >> arr[i];
+	
+	int n; cin >> n;
+	int ans = 0;
+	while (n){
+		ans ++;
+		if (cal(ans) == 10) n--;
+	}
+	printf("%d\n", ans);
 
-	// cout << (f ? "YES" : "NO") << endl;
 }
 
 // int32_t main()
@@ -108,9 +196,9 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    w(t) {
+    // w(t) {
 	    solve();
-    }
+    // }
  
 }
 
