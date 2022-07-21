@@ -24,28 +24,33 @@ using namespace std;
 #define endl "\n"
 #define M 1000000007
 
-// int search(vector<lli> arr, lli k) {
-// 	if(k <= arr[arr.size()-1])
-// 		return arr.size()-1;
-// 	int l = 0;
-// 	int r = arr.size()-1;
-// 	while(l <= r) {
-// 		int mid = (l+r) / 2;
-// 		// cout << arr[mid] << endl;
-// 		if(k == arr[mid])
-// 			return mid;
-// 		if(k < arr[mid] && k > arr[mid+1])
-// 			return mid;
-// 		// else if(arr[mid] < k && arr[mid+1] < k)
-// 			// return mid+1;
-// 		else if(arr[mid] > k) {
-// 			l = mid+1;
-// 		}
-// 		else 
-// 			r = mid-1;
-// 	}
-// 	return -1;
-// }	
+// binary search , number of elemnts less than or equal of k
+int search(vector<ll> arr, ll k) {
+	int n = arr.size();
+	if(k < arr[0])
+		return 0;
+	if(k >= arr[n-1])
+		return n;
+
+	int res = -1;
+	int l = 0;
+	int r = arr.size()-1;
+	while(l <= r) {
+		int mid = (l+r) / 2;
+		// cout << arr[mid] << endl;
+		if(k == arr[mid]) return mid+1;
+		if(k < arr[mid] && k > arr[mid-1])
+			return mid;
+		else if(k < arr[mid])
+			r = mid-1;
+		// else if(arr[mid] > k) {
+		// 	l = mid+1;
+		// }
+		else 
+			l = mid+1;
+	}
+	return -1;
+}	
 
 
 	int minDifference(int arr[], int n)  { 
@@ -151,7 +156,7 @@ int slv(vector<int> &arr, int n, int sum) {
 	return dp[n][sum] = slv(arr, n-1, sum);	
 }
 
-int cal(int num){
+int sumOfDigit(int num){
 	int ans = 0;
 	while (num){
 		ans += num % 10;
@@ -162,18 +167,35 @@ int cal(int num){
 
 void solve() {
 
-	// int n, k; cin >> n >> k;
-	// vector<int> arr(n);
-	// for(int i= 0; i < n; i++)
+	// int n; cin >> n;
+	// vi arr(n+1);
+	// for(int i= 1; i < n+1; i++)
 	// 	cin >> arr[i];
-	
-	int n; cin >> n;
-	int ans = 0;
-	while (n){
-		ans ++;
-		if (cal(ans) == 10) n--;
+
+	string s, t;
+	cin >> s >> t;
+	int n = s.length();
+	string ans = "";
+	int i = 0;
+	bool f = false;
+	while(i < n) {
+		int diff = t[i] - s[i];
+		if(diff > 1 || f) {
+			ans.pb(s[i]+1);
+			break;
+		}
+		else
+			ans.pb(s[i]);
+		if(diff == 1) f = true;
+		i++;
 	}
-	printf("%d\n", ans);
+	i++;	
+	while(i < n) ans.pb(s[i++]);
+
+	if(ans == s)
+		cout << "No such string";
+	else
+		cout << ans;
 
 }
 
