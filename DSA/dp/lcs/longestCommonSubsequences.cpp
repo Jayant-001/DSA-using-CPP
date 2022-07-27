@@ -23,19 +23,19 @@ using namespace std;
 #define fast_io ios_base::sync_with_stdio(false); cin.tie(NULL)
 
 	// memoization
-int dp[1002][1002];
+int dp1[1002][1002];
 int findSeq(string &x, string &y, int n, int m) {
 
 	if(n <= 0 || m <= 0) return 0;
-	if(dp[n][m] != -1) return dp[n][m];
-	if(x[n-1] == y[m-1]) return dp[n][m] = 1 + findSeq(x, y, n-1, m-1);
+	if(dp1[n][m] != -1) return dp1[n][m];
+	if(x[n-1] == y[m-1]) return dp1[n][m] = 1 + findSeq(x, y, n-1, m-1);
 
-	return dp[n][m] = max(findSeq(x, y, n-1, m) , findSeq(x, y, n, m-1));
+	return dp1[n][m] = max(findSeq(x, y, n-1, m) , findSeq(x, y, n, m-1));
 }
 
 // bottom-up
 int lcs(string &x, string &y, int n, int m) {
-	dp[n+1][m+1];
+	int dp[n+1][m+1];
 	for(int i = 0; i < n+1; i++) 
 		for(int j = 0; j < m+1; j++)
 			if(i == 0 || j == 0) 
@@ -49,6 +49,26 @@ int lcs(string &x, string &y, int n, int m) {
 				dp[i][j] = max(dp[i-1][j] , dp[i][j-1]);
 		}
 	}
+
+	// printing lcs............................................./////////////////
+	int i = n, j = m;
+	string ans = "";
+	while(dp[i][j] > 0) {
+		if(x[i-1] == y[j-1]) {
+			ans.pb(x[i-1]);
+			i--;
+			j--;
+		}
+		else if(dp[i-1][j] > dp[i][j-1]) 
+			i--;
+		else 
+			j--;
+	}
+
+	reverse(ans.begin(), ans.end());
+	cout << ans << endl;
+
+	// return length of lcs
 	return dp[n][m];
 }
 
@@ -57,7 +77,7 @@ void solve() {
 	cin >> x >> y;
 
 	// memoization//////
-	memset(dp, -1, sizeof(dp));
+	memset(dp1, -1, sizeof(dp1));
 	// cout << findSeq(x, y, x.length(), y.length());
 
 

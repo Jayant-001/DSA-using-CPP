@@ -5,6 +5,7 @@ using namespace std;
 
 #define ll             	long long
 #define lli				long long int
+#define vll   			vector<long>
 #define vi              vector<int>
 #define vs				vector<string>
 #define pb              push_back
@@ -167,43 +168,36 @@ int sumOfDigit(int num){
 
 void solve() {
 
-	// int n; cin >> n;
-	// vi arr(n+1);
-	// for(int i= 1; i < n+1; i++)
-	// 	cin >> arr[i];
-
-	string s, t;
-	cin >> s >> t;
-	int n = s.length();
-	string ans = "";
-	int i = 0;
-	bool f = false;
-	while(i < n) {
-		int diff = t[i] - s[i];
-		if(diff > 1 || f) {
-			ans.pb(s[i]+1);
-			break;
-		}
-		else
-			ans.pb(s[i]);
-		if(diff == 1) f = true;
-		i++;
+	int n; cin >> n;
+	vector<string> arr;
+	map<string, bool> m;
+	for(int i= 0; i < n; i++) {
+		string x; cin >> x;
+		arr.push_back(x);
+		m[x] = true;
 	}
-	i++;	
-	while(i < n) ans.pb(s[i++]);
 
-	if(ans == s)
-		cout << "No such string";
-	else
-		cout << ans;
+	for(int i = 0; i < n; i++) {
 
+		bool k = false;
+		for(int j = 1; j < arr[i].length(); j++) {
+
+			string a = arr[i].substr(0, j);
+			string b = arr[i].substr(j, arr[i].length()-j);
+			if(m[a] && m[b]) 
+				k = true;
+		}
+		cout << k;
+	}
+	
+	cout <<endl;
 }
 
 // int32_t main()
 // {
-// 	w(t) {
-// 	    solve();
-//     }
+	// w(t) {
+	    // solve();
+    // }
 //     return 0;
 // }
 #include<bits/stdc++.h>
@@ -218,9 +212,9 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    // w(t) {
+    w(t) {
 	    solve();
-    // }
+    }
  
 }
 

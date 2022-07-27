@@ -7,6 +7,7 @@ using namespace std;
 #define ll             	long long
 #define lli				long long int
 #define vi              vector<int>
+#define vll 			vector<long long>
 #define vs				vector<string>
 #define pb              push_back
 #define pii             pair<int,int>
@@ -25,7 +26,9 @@ using namespace std;
 #define fast_io ios_base::sync_with_stdio(false); cin.tie(NULL)
 #define N 1000002
 #define FOR(i, p) for(int i = 0; i < p; i++)
+#define traverse(arr) for(auto i : arr) cout << i << " "; cout << endl;
 
+// this function converts something to something -> I don't even know
 string convert(string s, string t) {
 	int hr = stoi(s.substr(0, 2));
 	int mm = stoi(s.substr(3));
@@ -59,8 +62,8 @@ bool checkPalindrome(string str, int i) {
 
 }
 
-vector<lli> getPre(vector<lli> arr, int n) {
-	vector<lli> pre(n, 0);
+vector<ll> getPre(vector<ll> arr, int n) {
+	vll pre(n, 0);
 	for(int i = 0; i < n;i++)
 	{
 		if(i == 0) pre[i] = arr[i];
@@ -69,8 +72,8 @@ vector<lli> getPre(vector<lli> arr, int n) {
 	return pre;
 }
 
-vector<lli> getPost(vector<lli> arr, int n) {
-	vector<lli> post(n, 0);
+vector<ll> getPost(vector<ll> arr, int n) {
+	vll post(n, 0);
 	for(int i = n-1; i >= 0; i--) {
 		if(i == n-1) post[i] = arr[i];
 		else post[i] = arr[i] + post[i+1];
@@ -78,7 +81,7 @@ vector<lli> getPost(vector<lli> arr, int n) {
 	return post;
 }
 
-void solve() {
+void solve1() {
 	int n; cin >> n;
 	vi arr(n);
 	for(int i = 0; i < n; i++) 
@@ -101,46 +104,47 @@ void solve() {
 			// cout << "odd "; debug(a);
 			temp += a;
 			i += 2;
-		}	
+		}
 		cost = min(cost, temp);
 	// debug(temp);
 	}
 	cout << cost << endl;
 }
 
-void solve1() {
+int getCost(vector<int> &arr, int i) {
+	return max(0, max(arr[i-1], arr[i+1]) - arr[i]+1);
+}
+
+void solve() {
 
 	int n; cin >> n;
-	// vi arr(n);
-	// for(int i = 0; i < n; i++) 
-	// 	cin >> arr[i];
+	vi arr(n);
+	for(int i = 0; i < n; i++) cin >> arr[i];
 
-	string s;
-	cin >> s;
-	string ans = "";
-	for(int i = 1; i < s.length(); i++) {
-
-		if(s[i] >= s[i-1]) {
-			ans = s.substr(0, i);
-			string k  = ans;
-			reverse(k.begin(), k.end());
-			ans += k;
-			break;
+	if(n&1) {
+		ll ans = 0;
+		for(int i = 1; i < n-1; i += 2)
+			ans += getCost(arr, i);
+		cout << ans << endl;
+	}
+	else {
+		ll ans = 0;
+		for(int i = 1; i < n-1; i += 2) {
+			ans += getCost(arr, i);
 		}
+		ll cur = ans;
+		for(int i = n-2; i > 0; i -= 2) {
+			cur -= getCost(arr, i-1);
+			cur += getCost(arr, i);
+			ans = min(ans, cur);
+		}
+		cout << ans << endl;
 	}
 
-	if(ans == "") {
-		string k  = s;
-		reverse(k.begin(), k.end());
-		ans = s + k;
-	}
-
-	cout << ans << endl;
 }
 
 int32_t main()
 {
-
 	ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
