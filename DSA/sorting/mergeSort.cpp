@@ -56,6 +56,7 @@ int main()
     {
         cin >> arr[i];
     }
+    
     merge_sort(arr, 0, n - 1);
     for (int it : arr)
     {

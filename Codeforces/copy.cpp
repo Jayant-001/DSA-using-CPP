@@ -27,6 +27,7 @@ using namespace std;
 #define N 1000002
 #define FOR(i, p) for(int i = 0; i < p; i++)
 #define traverse(arr) for(auto i : arr) cout << i << " "; cout << endl;
+#define sortV(arr) sort(arr.begin(), arr.end())
 
 // this function converts something to something -> I don't even know
 string convert(string s, string t) {
@@ -121,24 +122,26 @@ void solve() {
 	vi arr(n);
 	for(int i = 0; i < n; i++) cin >> arr[i];
 
-	if(n&1) {
-		ll ans = 0;
-		for(int i = 1; i < n-1; i += 2)
-			ans += getCost(arr, i);
-		cout << ans << endl;
+	map<int, int> m;
+	for(auto i : arr)
+		m[i]++;
+
+	int mx = 0;
+	for(auto i: m)
+		mx = max(mx, i.second);
+
+
+	if(n % 2 == 0) {
+		if(mx > (n/2)) 
+			cout << "NO" << endl;
+		else 
+			cout << "YES" << endl;
 	}
 	else {
-		ll ans = 0;
-		for(int i = 1; i < n-1; i += 2) {
-			ans += getCost(arr, i);
-		}
-		ll cur = ans;
-		for(int i = n-2; i > 0; i -= 2) {
-			cur -= getCost(arr, i-1);
-			cur += getCost(arr, i);
-			ans = min(ans, cur);
-		}
-		cout << ans << endl;
+		if(mx > (n/2)+1)
+			cout << "NO" << endl;
+		else
+			cout << "YES" << endl;
 	}
 
 }
@@ -153,3 +156,4 @@ int32_t main()
     }
     return 0;
 }
+

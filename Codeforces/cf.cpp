@@ -168,29 +168,32 @@ int sumOfDigit(int num){
 
 void solve() {
 
-	int n; cin >> n;
-	vector<string> arr;
-	map<string, bool> m;
-	for(int i= 0; i < n; i++) {
-		string x; cin >> x;
-		arr.push_back(x);
-		m[x] = true;
-	}
+	// int  n, k; cin >> n >> k;
+	// vector<int> arr(n);
+	// for(int i = 0; i < n; i++) cin >> arr[i];
 
-	for(int i = 0; i < n; i++) {
+	ll n, k, b, s;
+	cin >> n >> k >> b >> s;
+	vector<ll> lauda(n, 0);
+	ll mult = k*b;
+	if(s < mult || s > n*(k-1)+mult) 
+		cout << -1 << endl;
+	else {
 
-		bool k = false;
-		for(int j = 1; j < arr[i].length(); j++) {
-
-			string a = arr[i].substr(0, j);
-			string b = arr[i].substr(j, arr[i].length()-j);
-			if(m[a] && m[b]) 
-				k = true;
+		lauda[0] = mult;
+		s -= mult;
+		for(int i = 0; i < n && s > 0; ++i) {
+			lauda[i] += min(k-1, s);
+			// cout << lauda[i] << " ";
+			s = s-min(k-1, s);
 		}
-		cout << k;
+
+		for(auto i : lauda) cout << i << " ";
+			cout << endl;
+
 	}
-	
-	cout <<endl;
+
+
 }
 
 // int32_t main()
