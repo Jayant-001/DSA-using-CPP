@@ -116,34 +116,66 @@ int getCost(vector<int> &arr, int i) {
 	return max(0, max(arr[i-1], arr[i+1]) - arr[i]+1);
 }
 
-void solve() {
+void solve2() {
 
 	int n; cin >> n;
-	vi arr(n);
-	for(int i = 0; i < n; i++) cin >> arr[i];
+	vector<int> a(n), b(n);
+	for(int i = 0; i < n; i++) cin >> a[i];
+	for(int i = 0; i < n; i++) cin >> b[i];
 
-	map<int, int> m;
-	for(auto i : arr)
-		m[i]++;
-
-	int mx = 0;
-	for(auto i: m)
-		mx = max(mx, i.second);
-
-
-	if(n % 2 == 0) {
-		if(mx > (n/2)) 
-			cout << "NO" << endl;
-		else 
-			cout << "YES" << endl;
+	int k = a[0];
+	for(int i = 0; i < n; i++) {
+		if(b[i] == k) {
+			k = i;
+			break;
+		}
 	}
-	else {
-		if(mx > (n/2)+1)
-			cout << "NO" << endl;
-		else
-			cout << "YES" << endl;
+	debug(k);
+	int ans = min(k, n - k);
+	// debug(ans);
+	if(ans&1) {
+		cout << (ans/2) + 1;
 	}
+	else 
+		cout << (ans / 2);
 
+	cout << endl;
+
+}
+
+int oddbitsetnumber(int n)
+{
+	int binaryNum[32];
+ 
+    // counter for binary array
+    int i = 0;
+    while (n > 0) {
+ 
+        // storing remainder in binary array
+        binaryNum[i] = n % 2;
+        n = n / 2;
+        i++;
+    }
+ 
+    // printing binary array in reverse order
+    for (int j = i - 1; j >= 0; j--)
+        cout << binaryNum[j];
+    cout << endl;
+}
+
+void solve() {
+
+	// int n; cin >> n;
+	// vector<int> a(n);
+	// for(int i = 0; i < n; i++) cin >> a[i];
+
+	int a = 4;
+	int b = 10;
+	a = a^b;
+	b = a^b;
+	a = a^b;
+	debug(a);
+	debug(b);
 }
 
 int32_t main()
