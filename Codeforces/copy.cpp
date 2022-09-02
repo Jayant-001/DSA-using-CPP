@@ -165,17 +165,29 @@ int oddbitsetnumber(int n)
 
 void solve() {
 
-	// int n; cin >> n;
-	// vector<int> a(n);
-	// for(int i = 0; i < n; i++) cin >> a[i];
+	int n; cin >> n;
+	vi a(n), b(n);
+	for(int i = 0; i < n; i++) cin >> a[i];
+	for(int i = 0; i < n; i++) cin >> b[i];
 
-	int a = 4;
-	int b = 10;
-	a = a^b;
-	b = a^b;
-	a = a^b;
-	debug(a);
-	debug(b);
+	bool ans = true;
+	for(int i = 0; i < n; i++) {
+		if(a[i] > b[i])
+			ans = false;
+		if(b[i] > a[i] && b[i] > (b[(i+1)%n]+1))
+			ans = false;
+	}
+	// int d1 = 0, d2 = 0;
+	// for(int i = 1; i < n; i++)
+	// 	d1 += abs(a[i]-a[i-1]);
+
+	// for(int i = 1; i < n; i++)
+	// 	d2 += abs(b[i]-b[i-1]);
+
+	if(ans)
+		cout << "YES" << endl;
+	else
+		cout << "NO" << endl;
 }
 
 int32_t main()

@@ -23,7 +23,7 @@ int fastPower(int a, int b) {
         // return (power(a, b/2) * power(a, b/2));
 }
 
-int power(int x,int n){
+int power1(int x,int n){
     // write your code here
     if (n == 0)
         return 1;
