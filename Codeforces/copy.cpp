@@ -37,7 +37,7 @@ string convert(string s, string t) {
 	int ihr = k / 60;
 	int imm = k % 60;
 
-	hr = (hr+ihr) % 24;
+	hr = (hr + ihr) % 24;
 	mm = (mm + imm) % 60;
 	// debug(hr);
 	// debug(mm);
@@ -49,35 +49,35 @@ string convert(string s, string t) {
 
 bool checkPalindrome(string str, int i) {
 
-    int i2 = (str.length()-i-1);
+	int i2 = (str.length() - i - 1);
 
-    if(i >= (str.length() / 2)) {
-        return true;
-    }
+	if (i >= (str.length() / 2)) {
+		return true;
+	}
 
-    if(str[i] != str[i2]) {
-        return false;
-    }
+	if (str[i] != str[i2]) {
+		return false;
+	}
 
-    return checkPalindrome(str, ++i);
+	return checkPalindrome(str, ++i);
 
 }
 
 vector<ll> getPre(vector<ll> arr, int n) {
 	vll pre(n, 0);
-	for(int i = 0; i < n;i++)
+	for (int i = 0; i < n; i++)
 	{
-		if(i == 0) pre[i] = arr[i];
-		else pre[i] = arr[i] + pre[i-1];
+		if (i == 0) pre[i] = arr[i];
+		else pre[i] = arr[i] + pre[i - 1];
 	}
 	return pre;
 }
 
 vector<ll> getPost(vector<ll> arr, int n) {
 	vll post(n, 0);
-	for(int i = n-1; i >= 0; i--) {
-		if(i == n-1) post[i] = arr[i];
-		else post[i] = arr[i] + post[i+1];
+	for (int i = n - 1; i >= 0; i--) {
+		if (i == n - 1) post[i] = arr[i];
+		else post[i] = arr[i] + post[i + 1];
 	}
 	return post;
 }
@@ -85,47 +85,47 @@ vector<ll> getPost(vector<ll> arr, int n) {
 void solve1() {
 	int n; cin >> n;
 	vi arr(n);
-	for(int i = 0; i < n; i++) 
+	for (int i = 0; i < n; i++)
 		cin >> arr[i];
 
 	int cost = 0;
 	int i = 1;
-	while(i < n-1) {
-		int a = max(0, max(arr[i+1]+1 - arr[i], arr[i-1]+1-arr[i]));
+	while (i < n - 1) {
+		int a = max(0, max(arr[i + 1] + 1 - arr[i], arr[i - 1] + 1 - arr[i]));
 		cout << "odd "; debug(a);
 		cost += a;
 		i += 2;
 	}
 	// debug(cost);
-	if(n %2 == 0) {
-		i = 2; 
+	if (n % 2 == 0) {
+		i = 2;
 		int temp = 0;
-		while(i < n-1) {
-			int a = max(0, max(arr[i+1]+1 - arr[i], arr[i-1]+1-arr[i]));
+		while (i < n - 1) {
+			int a = max(0, max(arr[i + 1] + 1 - arr[i], arr[i - 1] + 1 - arr[i]));
 			// cout << "odd "; debug(a);
 			temp += a;
 			i += 2;
 		}
 		cost = min(cost, temp);
-	// debug(temp);
+		// debug(temp);
 	}
 	cout << cost << endl;
 }
 
 int getCost(vector<int> &arr, int i) {
-	return max(0, max(arr[i-1], arr[i+1]) - arr[i]+1);
+	return max(0, max(arr[i - 1], arr[i + 1]) - arr[i] + 1);
 }
 
 void solve2() {
 
 	int n; cin >> n;
 	vector<int> a(n), b(n);
-	for(int i = 0; i < n; i++) cin >> a[i];
-	for(int i = 0; i < n; i++) cin >> b[i];
+	for (int i = 0; i < n; i++) cin >> a[i];
+	for (int i = 0; i < n; i++) cin >> b[i];
 
 	int k = a[0];
-	for(int i = 0; i < n; i++) {
-		if(b[i] == k) {
+	for (int i = 0; i < n; i++) {
+		if (b[i] == k) {
 			k = i;
 			break;
 		}
@@ -133,10 +133,10 @@ void solve2() {
 	debug(k);
 	int ans = min(k, n - k);
 	// debug(ans);
-	if(ans&1) {
-		cout << (ans/2) + 1;
+	if (ans & 1) {
+		cout << (ans / 2) + 1;
 	}
-	else 
+	else
 		cout << (ans / 2);
 
 	cout << endl;
@@ -146,58 +146,48 @@ void solve2() {
 int oddbitsetnumber(int n)
 {
 	int binaryNum[32];
- 
-    // counter for binary array
-    int i = 0;
-    while (n > 0) {
- 
-        // storing remainder in binary array
-        binaryNum[i] = n % 2;
-        n = n / 2;
-        i++;
-    }
- 
-    // printing binary array in reverse order
-    for (int j = i - 1; j >= 0; j--)
-        cout << binaryNum[j];
-    cout << endl;
+
+	// counter for binary array
+	int i = 0;
+	while (n > 0) {
+
+		// storing remainder in binary array
+		binaryNum[i] = n % 2;
+		n = n / 2;
+		i++;
+	}
+
+	// printing binary array in reverse order
+	for (int j = i - 1; j >= 0; j--)
+		cout << binaryNum[j];
+	cout << endl;
 }
 
 void solve() {
 
+	// int n; cin >> n;
+	// vi arr(n);
+	// for (int i = 0; i < n; i++) cin >> arr[i];
+
 	int n; cin >> n;
-	vi a(n), b(n);
-	for(int i = 0; i < n; i++) cin >> a[i];
-	for(int i = 0; i < n; i++) cin >> b[i];
-
-	bool ans = true;
-	for(int i = 0; i < n; i++) {
-		if(a[i] > b[i])
-			ans = false;
-		if(b[i] > a[i] && b[i] > (b[(i+1)%n]+1))
-			ans = false;
+	string s; cin >> s;
+	int count = 0;
+	for (int i = 0; i < 2 * n - 1; i++) {
+		if (s[i] == '(' && s[i + 1] == ')') count++;
 	}
-	// int d1 = 0, d2 = 0;
-	// for(int i = 1; i < n; i++)
-	// 	d1 += abs(a[i]-a[i-1]);
 
-	// for(int i = 1; i < n; i++)
-	// 	d2 += abs(b[i]-b[i-1]);
-
-	if(ans)
-		cout << "YES" << endl;
-	else
-		cout << "NO" << endl;
+	int ans = n - count + 1;
+	cout << ans << endl;
 }
 
 int32_t main()
 {
 	ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    
+	cin.tie(NULL);
+
 	w(t) {
-	    solve();
-    }
-    return 0;
+		solve();
+	}
+	return 0;
 }
 

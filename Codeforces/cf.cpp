@@ -172,25 +172,15 @@ void solve() {
 	// vector<int> arr(n);
 	// for(int i = 0; i < n; i++) cin >> arr[i];
 
-	ll n, k, b, s;
-	cin >> n >> k >> b >> s;
-	vector<ll> lauda(n, 0);
-	ll mult = k*b;
-	if(s < mult || s > n*(k-1)+mult) 
-		cout << -1 << endl;
-	else {
+	stack<int> st;
+	st.push(4);
+	st.push(42);
+	st.push(2);
+	st.push(892);
 
-		lauda[0] = mult;
-		s -= mult;
-		for(int i = 0; i < n && s > 0; ++i) {
-			lauda[i] += min(k-1, s);
-			// cout << lauda[i] << " ";
-			s = s-min(k-1, s);
-		}
-
-		for(auto i : lauda) cout << i << " ";
-			cout << endl;
-
+	while(!st.empty()) {
+		cout << st.top() << " ";
+		st.pop();
 	}
 
 
