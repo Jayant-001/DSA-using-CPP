@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 #define endl "\n"
 #define no cout << "NO" << endl;
 #define yes cout << "YES" << endl;
 #define retno cout << "NO" << endl; return;
 #define retyes cout << "YES" << endl; return;
 #define ll long long
-#define int long long
+// #define int long long
 // #define lli long long int
 #define vi vector<int>
 #define vl vector<long>
@@ -38,13 +37,14 @@ using namespace std;
 	cin.tie(NULL)
 #define N 1000002
 #define fr(a,b) for(auto i=a;i<b;++i)
+#define sz(q) (int)(q.size())
 #define traverse(arr)     \
 	for (auto i : arr)    \
 		cout << i << " "; \
 	cout << endl;
 #define sortV(arr) sort(arr.begin(), arr.end())
 
-
+// --------------------------------------------- SIEVE
 vector<int> sieve(int n)
 {
 	vector<bool> vis(n+1, true);
@@ -65,7 +65,7 @@ vector<int> sieve(int n)
 			
 	return prime;
 }
-// ------------------GCD
+// ----------------------------------------GCD
 ll gcd(ll a, ll b)
 {
     if (b == 0)
@@ -74,6 +74,7 @@ ll gcd(ll a, ll b)
         return gcd(b, a % b);
 }
 
+// ---------------------------------------------- MAX-MIN
 int maxL(int a, int b) {
 	return a > b ? a : b;
 }
@@ -127,8 +128,6 @@ vector<ll> getPost(vector<ll> arr, int n)
 	return post;
 }
 
-// ------------------------------------------------------------------------------------------------------------------------------
-
 #define mx 1e16
 
 int checkperfectsquare(int n)
@@ -151,6 +150,17 @@ int checkperfectsquare(int n)
 	}
 }
 
+// ----------------------------------------- GET Binary (len = 32) of int
+string getBinaryString(int n) {
+	string binary = "";
+	for(int i = 31; i >= 0; i--) {
+		bool bit = n & (1<<i);
+		binary.pb(bit+'0');
+	}
+	return binary;
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------
 
 bool checkSorted(vector<int> &arr) {
 
@@ -182,26 +192,75 @@ ll search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
 	return ans;
 }
 
+// // to lower
+// cout << char('A' | (1<<5)) << endl;
+// cout << char('D' | ' ') << endl;
+
+// // to upper
+// cout << char('b' & '_') << endl;
+// cout << char('a' & (~(1<<5))) << endl;
+
 // --------------------------------------------- CODING AREA -------------------------------------------------------------------
 
+int search(vector<vector<int>> &arr, int a, int b) {
+	
+	int ct = 0;
+	for(auto i : arr) {
+		if(i[0] == a && i[1] == b) return -1;
+		if(i[0] < a) ct++;
+		else if(i[0] == a && i[1] < b) ct++;
+	}
+	return ct;
+}
+
+// 					keys			shift
+bool helper(pair<int, int> a, pair<int, int> b, double xx) {
+
+	double x1 = a.first, y1 = a.second;
+	double x2 = b.first, y2 = b.second;
+
+	// cout << x1 << " " << y1 << endl;
+	// cout << x2 << " " << y2 << endl;
+	double x = pow((x2-x1), 2);
+	double y = pow((y2-y1), 2);
+
+	// cout << x << ", " << y << endl;
+	double pp = sqrt(x+y);
+	// debug(pp);
+	return pp > xx;
+}
 
 void jayant() {
 
-	int n; cin >> n;
-	string s; cin >> s;
+	string a, b; cin >> a >> b;
+	int n = sz(a), m = sz(b);
+	int i = 0, j = 0, carry = 0;
+	string ans = "";
+	while(i < n && j < m) {
+		int x = a[i]-'0', y = b[j]-'0';
+		int sum = x + y + carry;
+		ans.push_back((sum%10)+'0');
+		carry = sum / 10;
+		i++, j++;
+	}
+	while(i < n) {
+		int sum = (a[i]-'0') + carry;
+		ans.push_back((sum%10)+'0');
+		carry = sum / 10;
+		i++;
+	}
+	while(j < m) {
+		int sum = (a[j]-'0') + carry;
+		ans.push_back((sum%10)+'0');
+		carry = sum / 10;
+		j++;
+	}
+	if(carry > 0) ans.push_back(carry+'0');
+	while(ans.size() && ans[0] == '0'){
+		ans.erase(ans.begin());
+	}
 
-	int left = n-2;
-	int right = n&1 ? 0 : 1;
-	while(left >= 0) {
-		cout << s[left];
-		left -= 2;
-	}
-	// debug("--")
-	while(right < n) {
-		cout << s[right];
-		right += 2;
-	}
-	
+	cout << ans << endl;
 }
 
 
@@ -216,7 +275,7 @@ int32_t main()
 
 	int t = 1;
 
-	// cin >> t;
+	cin >> t;
 
 	while(t--) {
 		jayant();

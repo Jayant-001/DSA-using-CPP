@@ -122,35 +122,7 @@ void mergeSort(vector<int> &arr, int l, int r) {
 
 void jayant() {
 
-	// ll n, k; cin >> n >> k;
-	// vector<ll> arr(n);
-	// for(int i = 0; i < n; i++) cin >> arr[i];
-
-	// vector<int> arr = {3,30,34,5,9};
-	// arr = {3,1,4,6,3,1,4};
-
-	// mergeSort(arr, 0, arr.size()-1);
-	// traverse(arr);
-
-	int a = 2, b = 3, c = 5;
-	int n; cin >> n;
-	int i = a, j = b, k = c;	
-	while(n--) {
-		int mn = min(i, min(j, k));
-		if(mn == i) {
-			cout << i << " " ;
-			i *= a;
-		}
-		else if(mn == j) {
-			cout << j << " ";
-			j *= b;
-		}
-		else {
-			cout << k << " ";
-			k *= c;
-		}
-	}
-
+	
 }
 
 
