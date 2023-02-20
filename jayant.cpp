@@ -7,7 +7,7 @@ using namespace std;
 #define retno cout << "NO" << endl; return;
 #define retyes cout << "YES" << endl; return;
 #define ll long long
-// #define int long long
+#define int long long
 // #define lli long long int
 #define vi vector<int>
 #define vl vector<long>
@@ -43,6 +43,7 @@ using namespace std;
 		cout << i << " "; \
 	cout << endl;
 #define sortV(arr) sort(arr.begin(), arr.end())
+// #define mod 1e9+7
 
 // --------------------------------------------- SIEVE
 vector<int> sieve(int n)
@@ -202,66 +203,51 @@ ll search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
 
 // --------------------------------------------- CODING AREA -------------------------------------------------------------------
 
-int search(vector<vector<int>> &arr, int a, int b) {
-	
-	int ct = 0;
-	for(auto i : arr) {
-		if(i[0] == a && i[1] == b) return -1;
-		if(i[0] < a) ct++;
-		else if(i[0] == a && i[1] < b) ct++;
-	}
-	return ct;
-}
-
-// 					keys			shift
-bool helper(pair<int, int> a, pair<int, int> b, double xx) {
-
-	double x1 = a.first, y1 = a.second;
-	double x2 = b.first, y2 = b.second;
-
-	// cout << x1 << " " << y1 << endl;
-	// cout << x2 << " " << y2 << endl;
-	double x = pow((x2-x1), 2);
-	double y = pow((y2-y1), 2);
-
-	// cout << x << ", " << y << endl;
-	double pp = sqrt(x+y);
-	// debug(pp);
-	return pp > xx;
-}
-
 void jayant() {
 
-	string a, b; cin >> a >> b;
-	int n = sz(a), m = sz(b);
-	int i = 0, j = 0, carry = 0;
-	string ans = "";
-	while(i < n && j < m) {
-		int x = a[i]-'0', y = b[j]-'0';
-		int sum = x + y + carry;
-		ans.push_back((sum%10)+'0');
-		carry = sum / 10;
-		i++, j++;
-	}
-	while(i < n) {
-		int sum = (a[i]-'0') + carry;
-		ans.push_back((sum%10)+'0');
-		carry = sum / 10;
-		i++;
-	}
-	while(j < m) {
-		int sum = (a[j]-'0') + carry;
-		ans.push_back((sum%10)+'0');
-		carry = sum / 10;
-		j++;
-	}
-	if(carry > 0) ans.push_back(carry+'0');
-	while(ans.size() && ans[0] == '0'){
-		ans.erase(ans.begin());
+	// int n; cin >> n;
+	// vi arr(n);
+	// for(int i = 0; i < n; i++) cin >> arr[i];
+
+	int n, m; cin >> n >> m;
+	unordered_map<int, set<int>> adj;
+	for(int i = 0; i < m; i++) {
+		int u, v; cin >> u >> v;
+		adj[u].insert(v);
+		adj[v].insert(u);
 	}
 
-	cout << ans << endl;
-}
+	int ans = 0;
+	queue<int> todo;
+	for(auto i : adj) {
+		if(i.second.size() == 1) todo.push(i.first);
+	}
+
+	while(todo.size()) {
+		
+		int k = todo.size();
+		ans++;
+		for(int i = 0; i < k; i++) {
+
+			int u = todo.front();
+			todo.pop();
+			int v = *(adj[u].begin());
+			adj[u].erase(v);
+			adj[v].erase(u);
+
+			// if(adj[v].size() == 1) todo.push(v);
+			// cout << u << " " << v << endl;
+		}
+		// break;
+		// debug("--")
+		for(auto i : adj) {
+		if(i.second.size() == 1) todo.push(i.first);
+	}
+	}
+
+	cout << ans;
+
+}	
 
 
 // ---------------------------------------------- MAIN AREA -----------------------------------------------------------------
@@ -275,7 +261,7 @@ int32_t main()
 
 	int t = 1;
 
-	cin >> t;
+	// cin >> t;
 
 	while(t--) {
 		jayant();
