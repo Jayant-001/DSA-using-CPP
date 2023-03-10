@@ -2,33 +2,26 @@
 using namespace std;
 
 int main() {
-
-    vector<pair<int, int>> v;
-    int n;
-    cin >> n;
-    bool h = true;
-    while(n--) {
-        int a, b;
-        cin >> a >> b;
-        v.push_back(make_pair(a, b));
-    }
-
-    sort(v.begin(), v.end());
-
-    // for(auto it : v)
-    //     cout << it.first << " " << it.second << endl;
-    //     cout << v[0].second;
-
-    for(int i = 0; i < v.size()-1; i++) {
-        if(v[i].second > v[i+1].second)
-            h = false;
-    }
-
-    if(h == false)
-        cout << "Happy Alex";
-    else
-        cout << "Poor Alex";
-
-
+  int mod = 1e9+7;
+  int n;
+  cin >> n;
+  int target = n*(n+1)/2;
+  if (target%2) {
+    cout << 0 << endl;
     return 0;
+  }
+  target /= 2;
+
+  vector<vector<int>> dp(n,vector<int>(target+1,0));
+  dp[0][0] = 1;
+  for (int i = 1; i < n; i++) {
+    for (int j = 0; j <= target; j++) {
+      dp[i][j] = dp[i-1][j];
+      int left = j-i;
+      if (left >= 0) {
+    (dp[i][j] += dp[i-1][left]) %= mod;
+      }
+    }
+  }
+  cout << dp[n-1][target] << endl;
 }

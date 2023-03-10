@@ -1,3 +1,17 @@
+/*
+
+
+  $$$$$$$$  $$$$$$$  $$	    $$
+     $$		$$   $$   $$   $$
+     $$		$$   $$	   $$ $$
+ $$  $$		$$$$$$$	     $$
+ $$  $$		$$   $$	    $$
+ $$$$$$		$$   $$	   $$
+
+
+*/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -10,6 +24,7 @@ using namespace std;
 #define int long long
 // #define lli long long int
 #define vi vector<int>
+#define vvi vector<vector<int>>
 #define vl vector<long>
 #define vll vector<long long>
 #define vs vector<string>
@@ -103,8 +118,9 @@ bool checkPalindrome(string str, int i)
 	return checkPalindrome(str, ++i);
 }
 
-vector<ll> getPre(vector<ll> arr, int n)
+vi getPre(vi &arr)
 {
+	int n = arr.size();
 	vll pre(n, 0);
 	for (int i = 0; i < n; i++)
 	{
@@ -116,9 +132,10 @@ vector<ll> getPre(vector<ll> arr, int n)
 	return pre;
 }
 
-vector<ll> getPost(vector<ll> arr, int n)
+vi getPost(vector<ll> arr)
 {
-	vll post(n, 0);
+	int n = arr.size();
+	vi post(n, 0);
 	for (int i = n - 1; i >= 0; i--)
 	{
 		if (i == n - 1)
@@ -172,7 +189,7 @@ bool checkSorted(vector<int> &arr) {
 }
 
 
-ll search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
+int search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
 
 	ll low = 0, high = cur, ans = 0;
 
@@ -202,53 +219,66 @@ ll search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
 // cout << char('a' & (~(1<<5))) << endl;
 
 // --------------------------------------------- CODING AREA -------------------------------------------------------------------
+unordered_map<int, vector<int>> adj;
+int vis[150005];
+void dfs(int node, set<int> &st, int &ct) {
+
+	vis[node] = 1;
+	st.insert(node);
+	for(auto i : adj[node]) {
+
+		if(!vis[i]) {
+		ct += adj[i].size();
+		dfs(i, st, ct);
+		}
+	}
+}
 
 void jayant() {
 
-	// int n; cin >> n;
-	// vi arr(n);
-	// for(int i = 0; i < n; i++) cin >> arr[i];
+	int i, j, k, n, m, ans = 0;
+	string s;
+	cin >> n;
+	vi arr(n);
 
-	int n, m; cin >> n >> m;
-	unordered_map<int, set<int>> adj;
-	for(int i = 0; i < m; i++) {
-		int u, v; cin >> u >> v;
-		adj[u].insert(v);
-		adj[v].insert(u);
-	}
-
-	int ans = 0;
-	queue<int> todo;
-	for(auto i : adj) {
-		if(i.second.size() == 1) todo.push(i.first);
-	}
-
-	while(todo.size()) {
-		
-		int k = todo.size();
-		ans++;
-		for(int i = 0; i < k; i++) {
-
-			int u = todo.front();
-			todo.pop();
-			int v = *(adj[u].begin());
-			adj[u].erase(v);
-			adj[v].erase(u);
-
-			// if(adj[v].size() == 1) todo.push(v);
-			// cout << u << " " << v << endl;
+	vi first, second;
+	int fsum = 0, ssum = 0;
+	fr(0, n) {
+		cin >> arr[i];
+		if(arr[i] < 0) {
+			second.pb(abs(arr[i]));
+			ssum += abs(arr[i]);
 		}
-		// break;
-		// debug("--")
-		for(auto i : adj) {
-		if(i.second.size() == 1) todo.push(i.first);
+		else {
+			first.pb(arr[i]);
+			fsum += arr[i];
+		}
 	}
+
+	if(fsum > ssum) {
+		return void(cout << "first");
+	}
+	if(ssum > fsum) 
+		return void(cout << "second");
+
+	fr(0, min(sz(first), sz(second))) {
+		if(first[i] > second[i]) 
+			return void(cout << "first");
+		else if(second[i] > first[i])
+			return void(cout << "second");
 	}
 
-	cout << ans;
+	if(sz(first) > sz(second)) 
+		return void (cout << "first");
+	else if(sz(second) > sz(first))
+		return void(cout << "second");
 
-}	
+	if(arr[n-1] > 0) 
+		return void(cout << "first");
+	else
+		return void(cout << "second");
 
+}
 
 // ---------------------------------------------- MAIN AREA -----------------------------------------------------------------
 
@@ -259,8 +289,13 @@ int32_t main()
 
 	// fast_io;
 
-	int t = 1;
+	// if reads input from file
 
+	// freopen("input.txt","r",stdin);
+    // freopen("output.txt","w",stdout);
+
+	int t = 1;
+    
 	// cin >> t;
 
 	while(t--) {
@@ -268,4 +303,5 @@ int32_t main()
 	}
 	return 0;
 }
+
 

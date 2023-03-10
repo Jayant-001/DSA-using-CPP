@@ -44,7 +44,7 @@ void swap(ll &x,ll &y){
 }
 
 bool checkSortedV(vector<ll> &arr) {
-	fo(1, arr.size()) {
+	fr(1, arr.size()) {
 		if(arr[i] <= arr[i-1]) return false;
 	}
 	return true;
@@ -133,43 +133,37 @@ int search(vector<pair<ll, ll>> &arr, ll k) {
 	return ans;
 }
 
-
 void jayant() {
 
-	int n; cin >> n;
-	vl arr(n);
-	for(int i = 0; i < n; i++) 
-		cin >> arr[i];
+	int i, j, k, n, m, ans = 0;
+	
+	int l, r; cin >> l >> r;
 
-	unordered_map<int, int> m;
+	int two = getCount(l, r, 2);
+    int three = getCount(l, r, 3);
+    
+    int twoRange = search(l, r, 2, two);
+    // debug("__---")
+    int threeRange = search(l, r, 3, two);
 
-	int ans = 0;
-	for(auto i : arr) {
-		if(m.find(i) != m.end()) continue;
-		int ls = m[i-1], rs = m[i+1];
-		m[i] = 1 + ls + rs;
-		m[i-ls] = 1 + ls + rs;
-		m[i+rs] = 1 + ls + rs;
-		// if(m.find(i-1) != m.end()) m[i-1] += 1+m[i+1];
-		// if(m.find(i+1) != m.end()) m[i+1] += 1 + m[i-1];
-		// ans = max(ans, m[i]);
+	// debug(two); debug(three);
+	// debug(twoRange) debug(threeRange);
+
+	ans = twoRange-l+1;
+	// debug(ans);
+	if(two == three) {
+		ans +=((threeRange-l+1) * (two-1));
 	}
-
-	for(auto i : m) ans = max(ans, i.second);
-
-	sortV(arr);
-	traverse(arr);
-	cout << ans << endl;
+	cout << two << " " << ans << endl;
 }
-
 
 int32_t main(){
 
 	fastio
 
-	// tt {
+	tt {
 		jayant();
-	// }
+	}
 
 	return 0;	
 }
