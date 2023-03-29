@@ -1,12 +1,12 @@
 /*
 
 
-  $$$$$$$$  $$$$$$$  $$	    $$
-     $$		$$   $$   $$   $$
-     $$		$$   $$	   $$ $$
- $$  $$		$$$$$$$	     $$
- $$  $$		$$   $$	    $$
- $$$$$$		$$   $$	   $$
+    $$$$$$$$       $$$      $$     $$        $$$
+       $$        $$   $$     $$   $$       $$   $$
+       $$        $$   $$      $$ $$        $$   $$
+   $$  $$        $$$$$$$        $$         $$$$$$$
+   $$  $$        $$   $$       $$          $$   $$
+   $$$$$$		 $$   $$      $$           $$   $$
 
 
 */
@@ -16,6 +16,7 @@
 using namespace std;
 
 #define endl "\n"
+#define spc " "
 #define no cout << "NO" << endl;
 #define yes cout << "YES" << endl;
 #define retno cout << "NO" << endl; return;
@@ -61,9 +62,9 @@ using namespace std;
 // #define mod 1e9+7
 
 // --------------------------------------------- SIEVE
-vector<int> sieve(int n)
+pair<vi, vi> sieve(int n)
 {
-	vector<bool> vis(n+1, true);
+	vector<int> vis(n+1, true);
     for (ll p = 2; p * p <= n; p++)
     {
  
@@ -79,10 +80,10 @@ vector<int> sieve(int n)
         if (vis[p])
             prime.push_back(p);
 			
-	return prime;
+	return {vis, prime};
 }
 // ----------------------------------------GCD
-ll gcd(ll a, ll b)
+int gcd(int a, int b)
 {
     if (b == 0)
         return a;
@@ -95,7 +96,7 @@ int maxL(int a, int b) {
 	return a > b ? a : b;
 }
 
-ll minL(ll a, ll b) {
+int minL(int a, int b) {
 	return a < b ? a : b;
 }
 
@@ -132,7 +133,7 @@ vi getPre(vi &arr)
 	return pre;
 }
 
-vi getPost(vector<ll> arr)
+vi getPost(vi &arr)
 {
 	int n = arr.size();
 	vi post(n, 0);
@@ -234,49 +235,39 @@ void dfs(int node, set<int> &st, int &ct) {
 	}
 }
 
+// ------------------------------------------------segment tree
+// tree size will be 4 * n (n = size of array)
+int seg[4*100005];
+void buildSeg(vi &arr, int index, int low, int high) {
+	if(low == high) {
+		seg[index] = arr[low];
+		return;
+	}
+	int mid = (low + high) / 2;
+	buildSeg(arr, 2*index+1, low, mid);
+	buildSeg(arr, 2*index+2, mid+1, high);
+	seg[index] = minL(seg[2*index+1], seg[2*index+2]);
+}
+
+int querySeg(vi &arr, int index, int low, int high, int l, int r) {
+	if(l <= low && high <= r) return seg[index];
+	if(low > r || high < l) return INT_MAX;
+	int mid = (low + high) / 2;
+	int left = querySeg(arr, 2*index+1, low, mid, l, r);
+	int right = querySeg(arr, 2*index+2, mid+1, high, l, r);
+	return minL(left, right);
+}
+// ---------------------------------------------- END of segment tree
+
 void jayant() {
 
-	int i, j, k, n, m, ans = 0;
-	string s;
-	cin >> n;
-	vi arr(n);
+	int i, j, k, n, m, sum = 0;
+	string s, t;
+	unordered_map<int, int> um;
 
-	vi first, second;
-	int fsum = 0, ssum = 0;
-	fr(0, n) {
-		cin >> arr[i];
-		if(arr[i] < 0) {
-			second.pb(abs(arr[i]));
-			ssum += abs(arr[i]);
-		}
-		else {
-			first.pb(arr[i]);
-			fsum += arr[i];
-		}
-	}
+	
 
-	if(fsum > ssum) {
-		return void(cout << "first");
-	}
-	if(ssum > fsum) 
-		return void(cout << "second");
 
-	fr(0, min(sz(first), sz(second))) {
-		if(first[i] > second[i]) 
-			return void(cout << "first");
-		else if(second[i] > first[i])
-			return void(cout << "second");
-	}
-
-	if(sz(first) > sz(second)) 
-		return void (cout << "first");
-	else if(sz(second) > sz(first))
-		return void(cout << "second");
-
-	if(arr[n-1] > 0) 
-		return void(cout << "first");
-	else
-		return void(cout << "second");
 
 }
 
@@ -290,7 +281,6 @@ int32_t main()
 	// fast_io;
 
 	// if reads input from file
-
 	// freopen("input.txt","r",stdin);
     // freopen("output.txt","w",stdout);
 
@@ -303,5 +293,3 @@ int32_t main()
 	}
 	return 0;
 }
-
-
