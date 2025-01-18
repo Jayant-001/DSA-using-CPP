@@ -6,7 +6,7 @@
 		cout << i << " "; \
 	cout << endl;
 
-typedef long long int ll;
+typedef long long ll;
 typedef long int li;
 using namespace std;
 
@@ -122,6 +122,7 @@ void mergeSort(vector<int> &arr, int l, int r) {
 
 void jayant() {
 
+	
 	
 }
 

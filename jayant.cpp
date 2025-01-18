@@ -1,3 +1,6 @@
+// inevitable 
+
+
 /*
 
 
@@ -62,9 +65,9 @@ using namespace std;
 #define yes cout << "YES" << endl;
 #define retno cout << "NO" << endl; return;
 #define retyes cout << "YES" << endl; return;
-#define ll long long
+#define ll long long 
 #define int long long
-// #define lli long long int
+#define lli long long int
 #define vi vector<int>
 #define vvi vector<vector<int>>
 #define vl vector<long>
@@ -72,14 +75,14 @@ using namespace std;
 #define vs vector<string>
 #define pb push_back
 #define pii pair<int, int>
+#define vpii vector<pair<int, int>> 
 #define mp make_pair
 #define mii map<int, int>
 #define umii unordered_map<int, int>
-#define pqb priority_queue<int>
-#define pqs priority_queue<int, vi, greater<int>>
+#define maxHeap priority_queue<int>
+#define minHeap priority_queue<int, vector<int>, greater<int>>
 #define setbits(x) __builtin_popcountll(x)
 #define zrobits(x) __builtin_ctzll(x)
-#define mod 1000000007
 #define inf 1e18
 #define all(x) x.begin(), x.end()
 #define ps(x, y) fixed << setprecision(y) << x
@@ -92,78 +95,137 @@ using namespace std;
 #define fast_io                       \
 	ios_base::sync_with_stdio(false); \
 	cin.tie(NULL)
-#define N 1000002
 #define fr(a,b) for(auto i=a;i<b;++i)
+#define frj(a,b) for(auto j=a;j<b;++j)
 #define len(q) (int)(q.size())
 #define traverse(arr)     \
 	for (auto i : arr)    \
 		cout << i << " "; \
-	cout << endl;
+	cout << "\n";
 #define sortV(arr) sort(arr.begin(), arr.end())
-// #define mod 1e9+7
+// const int mod = 1e9+7;
+#define max(p,q)((p)>(q)?(p):(q)) 
+#define min(p,q)((p)<(q)?(p):(q)) 
+#define INF (( 1LL << 62 )-( 1LL << 31 )) /*Without overflow a large number*/ 
+#define MOD 1000000007
+#define SUM(x) accumulate(x.begin(), x.end(), 0LL)
+#define debugMp(mp) for(auto i : mp) {cout << i.first << " -> "; for(auto val : i.second) cout << val << " "; cout << endl;} 
+#define fill(arr, n) 		\
+	fr(0, n) {				\
+		int x; cin >> x; 	\
+		arr.pb(x); 			\
+	}
+#define fillM(arr, n, m) 		\
+	fr(0, n) {					\
+		vi temp;				\
+		frj(0, m) {				\
+			int x; cin >> x;	\
+			temp.pb(x);			\
+		}						\
+		arr.pb(temp);			\
+	}
+// Traverse 2D matrix
+#define debugM(arr) 					\
+	fr(0, arr.size()) {					\
+		frj(0, arr[0].size()) 			\
+			cout << arr[i][j] << " ";	\
+		cout << endl;					\
+	}
+
+
+ 
+// ================================== take ip/op like vector,pairs directly!==================================
+template<typename typC,typename typD> istream &operator>>(istream &cin,pair<typC,typD> &a) { return cin>>a.first>>a.second; }
+template<typename typC> istream &operator>>(istream &cin,vector<typC> &a) { for (auto &x:a) cin>>x; return cin; }
+template<typename typC,typename typD> ostream &operator<<(ostream &cout,const pair<typC,typD> &a) { return cout<<a.first<<' '<<a.second; }
+template<typename typC,typename typD> ostream &operator<<(ostream &cout,const vector<pair<typC,typD>> &a) { for (auto &x:a) cout<<x<<'\n'; return cout; }
+template<typename typC> ostream &operator<<(ostream &cout,const vector<typC> &a) { int n=a.size(); if (!n) return cout; cout<<a[0]; for (int i=1; i<n; i++) cout<<' '<<a[i]; return cout; }
+// ===================================END Of the input module ==========================================
+ 
+const auto start_time = std::chrono::high_resolution_clock::now();
+void getExecutionTime()
+{
+auto end_time = std::chrono::high_resolution_clock::now();
+std::chrono::duration<double> diff = end_time-start_time;
+    cerr<<"Time Taken : "<<diff.count()<<"\n";
+}
+
+
+
+// // --------------------------------------------------------------ordered_set headers
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;
+
+// // #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+// // eg: ordered_set st;
+
+// // oset<int> s: s.find_by_order(k): Kth element in 's', s.order_of_key(k): number of items strictly less than k
+// template<class T> using oset =tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
+// // eg: oset<int> st;
+// // --------------------------------------------------------------END of ordered_set headers
 
 // --------------------------------------------- SIEVE
 pair<vi, vi> sieve(int n)
 {
 	vector<int> vis(n+1, true);
-    for (ll p = 2; p * p <= n; p++)
+    for (int p = 2; p * p <= n; p++)
     {
  
         if (vis[p] == true)
         {
  
-            for (ll i = p * p; i <= n; i += p)
+            for (int i = p * p; i <= n; i += p)
                 vis[i] = false;
         }
     }
 	vector<int> prime;
-    for (ll p = 2; p <= n; p++)
+    for (int p = 2; p <= n; p++)
         if (vis[p])
             prime.push_back(p);
 			
 	return {vis, prime};
 }
+
 // ----------------------------------------GCD
-int gcd(int a, int b)
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    else return gcd(b, a % b);
+}
+
+int lcm(int a, int b) {
+	return a*b / gcd(a, b);
+}
+
+// ------------------------------- custom hash
+struct custom_hash
 {
-    if (b == 0)
-        return a;
-    else
-        return gcd(b, a % b);
-}
+    static uint64_t splitmix64(uint64_t x)
+    {
+      
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
+    }
+    size_t operator()(uint64_t x) const
+    {
+        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + FIXED_RANDOM);
+    }
+};
 
-// ---------------------------------------------- MAX-MIN
-int maxL(int a, int b) {
-	return a > b ? a : b;
-}
-
-int minL(int a, int b) {
-	return a < b ? a : b;
-}
-
-
-bool checkPalindrome(string str, int i)
-{
-
-	int i2 = (str.length() - i - 1);
-
-	if (i >= (str.length() / 2))
-	{
-		return true;
+int checkPalindrome(string &s, int l, int r) {
+	while(l < r) {
+		if(s[l++] != s[r--]) return false;
 	}
-
-	if (str[i] != str[i2])
-	{
-		return false;
-	}
-
-	return checkPalindrome(str, ++i);
+	return true;
 }
 
-vi getPre(vi &arr)
+vi getPrefix(vi &arr)
 {
 	int n = arr.size();
-	vll pre(n, 0);
+	vi pre(n, 0);
 	for (int i = 0; i < n; i++)
 	{
 		if (i == 0)
@@ -174,7 +236,7 @@ vi getPre(vi &arr)
 	return pre;
 }
 
-vi getPost(vi &arr)
+vi getPostfix(vi &arr)
 {
 	int n = arr.size();
 	vi post(n, 0);
@@ -211,13 +273,31 @@ int checkperfectsquare(int n)
 }
 
 // ----------------------------------------- GET Binary (len = 32) of int
-string getBinaryString(int n) {
+string intToBinary(int n) {
 	string binary = "";
-	for(int i = 31; i >= 0; i--) {
-		bool bit = n & (1<<i);
+	for(int i = 62; i >= 0; i--) {
+		bool bit = n & (1LL<<i);
 		binary.pb(bit+'0');
 	}
 	return binary;
+}
+
+int binaryToInt(string &s) {
+	int ans = 0;
+
+	reverse(all(s));
+
+	while(s.size() && s[len(s)-1] == '0') s.pop_back();
+
+	int i = 0;
+	while(i < len(s)) {
+		if(s[i] == '1') {
+			ans += pow(2, i);
+		}
+		i++;
+	}
+
+	return ans;
 }
 
 // ------------------------------------------------------------------------------------------------------------------------------
@@ -260,22 +340,6 @@ int search(vector<ll> &arr, vector<ll> &prefix, ll cur, ll k) {
 // cout << char('b' & '_') << endl;
 // cout << char('a' & (~(1<<5))) << endl;
 
-// --------------------------------------------- CODING AREA -------------------------------------------------------------------
-unordered_map<int, vector<int>> adj;
-int vis[150005];
-void dfs(int node, set<int> &st, int &ct) {
-
-	vis[node] = 1;
-	st.insert(node);
-	for(auto i : adj[node]) {
-
-		if(!vis[i]) {
-		ct += adj[i].size();
-		dfs(i, st, ct);
-		}
-	}
-}
-
 // ------------------------------------------------segment tree
 // tree size will be 4 * n (n = size of array)
 int seg[4*100005];
@@ -287,7 +351,7 @@ void buildSeg(vi &arr, int index, int low, int high) {
 	int mid = (low + high) / 2;
 	buildSeg(arr, 2*index+1, low, mid);
 	buildSeg(arr, 2*index+2, mid+1, high);
-	seg[index] = minL(seg[2*index+1], seg[2*index+2]);
+	seg[index] = min(seg[2*index+1], seg[2*index+2]);
 }
 
 int querySeg(vi &arr, int index, int low, int high, int l, int r) {
@@ -296,54 +360,140 @@ int querySeg(vi &arr, int index, int low, int high, int l, int r) {
 	int mid = (low + high) / 2;
 	int left = querySeg(arr, 2*index+1, low, mid, l, r);
 	int right = querySeg(arr, 2*index+2, mid+1, high, l, r);
-	return minL(left, right);
+	return min(left, right);
 }
 // ---------------------------------------------- END of segment tree
 
-void jayant() {
-
-	int i, j, k, n, m, q, sum = 0;
-	string s, t;
-	unordered_map<int, int> um;
-
+// --------------------------------------------- CODING AREA -------------------------------------------------------------------
+void pattern() {
+	int n; 
 	cin >> n;
-	vi arr(n), brr(n);
-	fr(0, n) cin >> arr[i];
-	fr(0, n) cin >> brr[i];
-
-	// traverse(arr);
-	// traverse(brr);
-
-	sum = INT_MAX;
-	fr(0, n) {
-		int prev = INT_MAX, next = INT_MAX;
-		for(int k = 0; k < i; k++) {
-			if(arr[k] < arr[i]) 
-				prev = minL(prev, brr[k]);
+	int cur = n/2;
+	for(int i = 0; i < n/2+1; i++) {
+		for(int j = 0; j < n; j++) {
+			
+			if((i == 0 || i == n-1)) {
+				if(j == n/2) cout << "*";
+				else cout << " ";
+			}
+			else if(j != n/2 && (j == ((n/2)-i)) || j == ((n/2)+i)) cout << "*";
+			// else if(i > n/2 &&  ( (j == n-(i+1)) || j == n-(i-1) ) ) cout << "*";
+			else {
+				cout << " ";
+			}
 		}
-		for(int k = i+1; k < n; k++) {
-			if(arr[k] > arr[i]) 
-				next = minL(next, brr[k]);
-		}
-
-		// cout << i << " " << prev << " " << next << endl;
-
-		if(prev < INT_MAX && next < INT_MAX) 
-			sum = minL(sum, prev+brr[i]+next);
+		cout << endl;
 	}
 
+	for(int i = n/2; i >= 0; i--) {
+		for(int j = 0; j < n; j++) {
+			
+			if((i == 0 || i == n-1)) {
+				if(j == n/2) cout << "*";
+				else cout << " ";
+			}
+			else if(j != n/2 && (j == ((n/2)-i)) || j == ((n/2)+i)) cout << "*";
+			// else if(i > n/2 &&  ( (j == n-(i+1)) || j == n-(i-1) ) ) cout << "*";
+			else {
+				cout << " ";
+			}
+		}
+		cout << endl;
+	}
+}
 
-	cout << (sum == INT_MAX ? -1 : sum) ;
+
+// Returns factorial of n
+int fact(int n)
+{
+     if(n==0)
+      return 1;
+    int res = 1;
+    for (int i = 2; i <= n; i++)
+        res = res * i;
+    return res;
+}
+
+int nCr(int n, int r)
+{
+    return fact(n) / (fact(r) * fact(n - r));
+}
+
+
+// count vertices in DFS
+void DFS(int start, vector<int> v[],vector<int> &visited, int &count)
+{
+  visited[start] = 1;
+  count++;
+  for(auto neg : v[start]) {
+  	if(visited[neg] == 0)
+  		DFS(neg, v, visited, count);
+  }
+}
+
+
+long long binpow(long long a, long long b)
+{
+    long long res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = res * a;
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+
+
+/*
+Ozark
+Prison break
+Dexter
+Peaky Blinder
+Sherlock
+// The Diplomat, the fall of the house of usher, daily dose of sunshine, blue eye samurai
 	
+	SPIDER-MAN: ACROSS THE SPIDER-VERSE
+	-- 
+	Mindhunter, jamtara, ocean 11, 12, 13, 
+	Movies - The pale blue eye, seven
+	series - 1899, kaleidoscope
+	andhadhun
+	Murder in mahim
+	castle
+	Mentalist
+	True detecative s1
+	dark
+	Narcos
+	Lupin, Suzha - The vortex, Parking, Spycraft, Manifest (flight 828)
+	Under the bridge
+	sherlock, eric, hannibal
+	The gentlemen, 
+*/
+
+// Mr. Robot, The Matrix, Source Code, Blackhat, Silicon Valley, The Internship
+
+void jayant() {
+	int i, j, k, n, m, sum = 0;
+
+	string s;
+	// map<int, int> mp;
+	// unordered_map<int, int, custom_hash> hash;
+	// unordered_map<int, vector<int>> adj;
+	// copy(arr.begin(), arr.end(), std::ostream_iterator<int>(std::cout, " "));
+	// cout << ((double)clock() / CLOCKS_PER_SEC) << endl;
 
 }
+
 
 // ---------------------------------------------- MAIN AREA -----------------------------------------------------------------
 
 int32_t main()
 {
-	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
+	cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
 
 	// fast_io;
 
@@ -352,182 +502,12 @@ int32_t main()
     // freopen("output.txt","w",stdout);
 
 	int t = 1;
-    
+
 	// cin >> t;
 
 	while(t--) {
 		jayant();
 	}
+	getExecutionTime();
 	return 0;
 }
-
-
-
-
-
-
-
-/*
-
-_________ad88888888888888888a,
-________a88888"888888888888888888,
-______,8888"__"P8888888888888888888b,
-______d88_________`""P888888888888888,
-_____,8888b_______________""888888888888,
-_____d8P'''__,aa,______________""888888888b
-_____888bbdd888888ba,__,I_________"88888888,
-_____8888888888888888ba8"_________,8888888b
-____,888888888888888888b,________,8888888888
-____(88888888888888888888,______,88888888888,
-____d888888888888888888888,____,8___"888888b
-____88888888888888888888888__.;8'"""__(888888
-____8888888888888I"8888888P_,8"_,aaa,__888888
-____888888888888I:8888888"_,8"__`b8d'__(88888
-____(8888888888I'888888P'_,8)__________888088
-_____88888888I"__8888P'__,8")__________880888
-_____8888888I'___888"___,8"_(._.)_______808888
-_____(8888I"_____"88,__,8"_____________,8888P
-______888I'_______"P8_,8"_____________,88808)
-_____(88I'__________",8"__M""""""M___,8888988'
-____,8I"____________,8(____"aaaa"___,888888
-___,8I'____________,888a___________,888888)
-__,8I'____________,888888,_______,888888888
-_,8I'____________,8888888'`-===-'888888888'
-,8I'____________,8888888"________88888888"
-8I'____________,8"____88_________"888888P
-8I____________,8'_____88__________`P888"
-8I___________,8I______88____________"8ba,.
-(8,_________,8P'______88______________88""8bma,.
-_8I________,8P'_______88,______________"8b___""P8ma,
-_(8,______,8d"________`88,_______________"8b_____`"8a
-__8I_____,8dP_________,8X8,________________"8b.____:8b
-__(8____,8dP'__,I____,8XXX8,________________`88,____8)
-___8,___8dP'__,I____,8XxxxX8,_____I,_________8X8,__,8
-___8I___8P'__,I____,8XxxxxxX8,_____I,________`8X88,I8
-___I8,__"___,I____,8XxxxxxxxX8b,____I,________8XXX88I,
-___`8I______I'__,8XxxxxxxxxxxxXX8____I________8XXxxXX8,
-____8I_____(8__,8XxxxxxxxxxxxxxxX8___I________8XxxxxxXX8,
-___,8I_____I[_,8XxxxxxxxxxxxxxxxxX8__8________8XxxxxxxxX8,
-___d8I,____I[_8XxxxxxxxxxxxxxxxxxX8b_8_______(8XxxxxxxxxX8,
-___888I____`8,8XxxxxxxxxxxxxxxxxxxX8_8,_____,8XxxxxxxxxxxX8
-___8888,____"88XxxxxxxxxxxxxxxxxxxX8)8I____.8XxxxxxxxxxxxX8
-__,8888I_____88XxxxxxxxxxxxxxxxxxxX8_`8,__,8XxxxxxxxxxxxX8"
-__d88888_____`8XXxxxxxxxxxxxxxxxxX8'__`8,,8XxxxxxxxxxxxX8"
-__888888I_____`8XXxxxxxxxxxxxxxxX8'____"88XxxxxxxxxxxxX8"
-__88888888bbaaaa88XXxxxxxxxxxxXX8)______)8XXxxxxxxXX8"
-__8888888I,_``""""""8888888888888888aaaaa8888XxxxxXX8"
-__(8888888I,______________________.__```"""""88888P"
-___88888888I,___________________,8I___8,_______I8"
-____"""88888I,________________,8I'____"I8,____;8"
-___________`8I,_____________,8I'_______`I8,___8)
-____________`8I,___________,8I'__________I8__:8'
-_____________`8I,_________,8I'___________I8__:8
-______________`8I_______,8I'_____________`8__(8
-_______________8I_____,8I'________________8__(8;
-_______________8I____,8"__________________I___88,
-______________.8I___,8'_______________________8"8,
-______________(PI___'8_______________________,8,`8,
-_____________.88'____________,_@___________.a8X8,`8,
-_____________(88____________@@@_________,a8XX88,`8,
-____________(888______________@'_______,d8XX8"__"b_`8,
-___________.8888,_____________________a8XXX8"____"a__`8,
-__________.888X88___________________,d8XX8I"______9,__`8,
-_________.88:8XX8,_________________a8XxX8I'_______`8___`8,
-________.88'_8XxX8a_____________,ad8XxX8I'________,8_____`8,
-________d8'__8XxxxX8ba,______,ad8XxxX8I"__________8___,___`8,
-_______(8I___8XxxxxxX888888888XxxxX8I"___________8___II___`8
-_______8I'___"8XxxxxxxxxxxxxxxxxxX8I'____________(8___8)____8;
-______(8I_____8XxxxxxxxxxxxxxxxxX8"_____________(8___8)____8I
-______8P'_____(8XxxxxxxxxxxxxxX8I'________________8,__(8____:8
-_____(8'_______8XxxxxxxxxxxxxxX8'_________________`8,_8_____8
-_____8I________`8XxxxxxxxxxxxX8'___________________`8,8___;8
-_____8'_________`8XxxxxxxxxxX8'_____________________`8I__,8'
-_____8___________`8XxxxxxxxX8'_______________________8'_,8'
-_____8____________`8XxxxxxX8'________________________8_,8'
-_____8_____________`8XxxxX8'________________________d'_8'
-_____8______________`8XxxX8_________________________8_8'
-_____8________________"8X8'_________________________"8"
-_____8,________________`88___________________________8
-_____8I________________,8'__________________________d)
-_____`8,_______________d8__________________________,8
-______(b_______________8'_________________________,8'
-_______8,_____________dP_________________________,8'
-_______(b_____________8'________________________,8'
-________8,___________d8________________________,8'
-________(b___________8'_______________________,8'
-_________8,_________a8_______________________,8'
-_________(b_________8'______________________,8'
-__________8,_______,8______________________,8'
-__________(b_______8'_____________________,8'
-___________8,_____,8_____________________,8'
-___________(b_____8'____________________,8'
-____________8,___d8____________________,8'
-____________(b__,8'___________________,8'
-_____________8,,I8___________________,8'
-_____________I8I8'__________________,8'
-_____________`I8I__________________,8'
-______________I8'_________________,8'
-______________"8_________________,8'
-______________(8________________,8'
-______________8I_______________,8'
-______________(b,___8,________,8)
-______________`8I___"88______,8i8,
-_______________(b,__________,8"8")
-_______________`8I__,8______8)_8_8
-________________8I__8I______"__8_8
-________________(b__8I_________8_8
-________________`8__(8,________b_8,
-_________________8___8)________"b"8,
-_________________8___8(_________"b"8
-_________________8___"I__________"b8,
-_________________8________________`8)
-_________________8_________________I8
-_________________8_________________(8
-_________________8,_________________8,
-_________________Ib_________________8)
-_________________(8_________________I8
-__________________8_________________I8
-__________________8_________________I8
-__________________8,________________I8
-__________________Ib________________8I
-__________________(8_______________(8'
-___________________8_______________I8
-___________________8,______________8I
-___________________Ib_____________(8'
-___________________(8_____________I8
-___________________`8_____________8I
-____________________8____________(8'
-____________________8,___________I8
-____________________Ib___________8I
-____________________(8___________8'
-_____________________8,_________(8
-_____________________Ib_________I8
-_____________________(8_________8I
-______________________8,________8'
-______________________(b_______(8
-_______________________8,______I8
-_______________________I8______I8
-_______________________(8______I8
-________________________8______I8,
-________________________8______8_8,
-________________________8,_____8_8'
-_______________________,I8_____"8"
-______________________,8"8,_____8,
-_____________________,8'_`8_____`b
-____________________,8'___8______8,
-___________________,8'____(a_____`b
-__________________,8'_____`8______8,
-__________________I8/______8______`b,
-__________________I8-/_____8_______`8,
-__________________(8/-/____8________`8,
-___________________8I/-/__,8_________`8
-___________________`8I/--,I8________-8)
-____________________`8I,,d8I_______-8)
-______________________"bdI"8,_____-I8
-___________________________`8,___-I8'
-____________________________`8,,--I8
-_____________________________`Ib,,I8
-______________________________`I8I
-
-
-*/

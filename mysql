@@ -1,0 +1,97 @@
+
+-- create
+CREATE TABLE EMPLOYEE (
+  empId int PRIMARY KEY auto_increment,
+  name varchar(50) NOT NULL,
+  dept varchar(50) NOT NULL
+);
+
+-- insert
+INSERT INTO EMPLOYEE VALUES (1, 'Clark', 'Sales');
+INSERT INTO EMPLOYEE VALUES (2, 'Dave', 'Accounting');
+INSERT INTO EMPLOYEE VALUES (3, 'Ava', 'Sales');
+
+-- truncate employee;
+
+insert into EMPLOYEE (name, dept) value ("jayant", "Engineer");
+insert into EMPLOYEE (name, dept) value ("K Khan", "Sales");
+
+update employee set dept = 'IT' where name = 'K Khan';
+
+-- fetch 
+-- SELECT * FROM EMPLOYEE WHERE not name = 'jayant';
+
+create table Users (id Int PRIMARY key auto_increment, name varchar(50));
+insert into Users (name) values ('jayant'), ('Ava');
+
+-- select * from Users;
+
+-- select E.name from (select * from EMPLOYEE) as E;
+
+-- select * from EMPLOYEE where name not in (select name from Users);
+
+
+create table Customer
+    (
+      cust_id int primary key auto_increment, name varchar(20), 
+      city enum ('DLN', "GHZ", "ZNA")
+    );
+
+ALTER table Customer ADD salary int, add age int;
+alter table Customer change column salary salary int not null;
+
+alter table Customer drop column age;
+-- desc Customer;
+
+insert into 
+  Customer (name, city, salary) values 
+  ('jayant', 'DLN', 1200), ('Karan', 'GHZ', 1100),
+  ('Param', 'ZNA', 898), ('Pawan', 'DLN', 500);
+
+select * from Customer;
+
+select ('-------------');
+
+CREATE TABLE Orders
+(
+  order_id int primary key auto_increment,
+  cust_id int not null,
+  order_date Date check(order_date > '2023-12-31'),
+  FOREIGN KEY (cust_id) REFERENCES Customer(cust_id)
+);
+
+
+Insert into Orders (cust_id, order_date) values (2, '2024-03-31'), (3, '2032-4-28');
+
+select * from Orders;
+
+select ('---------------');
+
+-- select * from Customer c cross join Orders o on c.cust_id = o.cust_id;
+
+-- select city, count(name) from Customer group by city having count(name) > 1;
+
+
+
+select * from Customer UNION select * from Orders;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
